@@ -7,9 +7,11 @@ Depends: R (>= 3.2.0)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
-LinkingTo: 
+LinkingTo:
     Rcpp, RcppEigen
-Imports: 
+Imports:
     Rcpp
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
+URL: https://github.com/tnagler/wdm
+BugReports: https://github.com/tnagler/wdm/issues
