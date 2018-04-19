@@ -1,9 +1,15 @@
 Package: wdm
-Title: What the Package Does (one line, title case)
+Title: Weighted Dependence Measures
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-Depends: R (>= 3.4.4)
+Authors@R: person("Thomas", "Nagler", email = "mail@tnagler.com", role = c("aut", "cre"))
+Description: Provides efficient implementations of weighted dependence measures.
+Depends: R (>= 3.2.0)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+LinkingTo: 
+    Rcpp, RcppEigen
+Imports: 
+    Rcpp
+RoxygenNote: 6.0.1
+Roxygen: list(markdown = TRUE)

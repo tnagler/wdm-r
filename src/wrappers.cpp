@@ -1,7 +1,7 @@
 #include <RcppEigen.h>
 #include <Eigen/Dense>
-#include "fastktau_stl.hpp"
-#include "fasthoeffd_stl.hpp"
+#include "fastktau.hpp"
+#include "fasthoeffd.hpp"
 
 //' @export
 // [[Rcpp::export]]

@@ -1,7 +1,6 @@
-#include <algorithm>
-#include <functional>
-#include <vector>
-#include <numeric>
+#pragma once
+
+#include "utils.hpp"
 
 namespace fastktau {
 
@@ -22,21 +21,21 @@ inline double fast_ktau(
         throw std::runtime_error("lengths of x, y, and weights must match.");
 
     // 0.1 Normalize weights such that they sum to choose(n, 2).
-    normalize_weights(weights);
+    utils::normalize_weights(weights);
 
     // 1.1 Sort x, y, and weights in x order; break ties in according to y.
-    sort_all(x, y, weights);
+    utils::sort_all(x, y, weights);
 
     // 1.2 Count pairs of tied x and simultaneous ties in x and y.
-    double ties_x = count_ties(x, weights);
-    double ties_both = count_joint_ties(x, y, weights);
+    double ties_x = utils::count_ties(x, weights);
+    double ties_both = utils::count_joint_ties(x, y, weights);
 
     // 2.1 Sort y again and count exchanges (= number of discordant pairs).
     double num_d = 0.0;
-    merge_sort(y, num_d, weights);
+    utils::merge_sort(y, weights, num_d);
 
     // 2.2 Count pairs of tied y.
-    double ties_y = count_ties(y, weights);
+    double ties_y = utils::count_ties(y, weights);
 
     // 3. Calculate Kendall's tau.
     double num_pairs = 0.5 * n * (n - 1);

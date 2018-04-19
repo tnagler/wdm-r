@@ -1,8 +1,24 @@
+#pragma once
+
 #include <algorithm>
 #include <vector>
 #include <numeric>
 
 namespace utils {
+
+
+inline double perm_sum(const std::vector<double>& x, size_t k) {
+    if (k == 0)
+        return 1.0;
+    double s = 0;
+    for (size_t i = 1; i <= k; i++) {
+        double xi_sum = 0.0;
+        for (size_t j = 0; j < x.size(); j++)
+            xi_sum += std::pow(x[j], i);
+        s += std::pow(-1, i - 1) * perm_sum(x, k - i) * xi_sum;
+    }
+    return s / k;
+}
 
 
 //! normalizes a vector of weights such that they sum to choose(n, 2), where
@@ -12,16 +28,9 @@ inline void normalize_weights(std::vector<double>& weights)
 {
     size_t n = weights.size();
     if (n > 0) {
-        double w_sum = 0.0, w2_sum = 0.0;
-        for (size_t i = 0; i < weights.size(); i++) {
-            w_sum  += weights[i];
-            w2_sum += weights[i] * weights[i];
-        }
-        double norm = std::sqrt(0.5 * n * (n - 1));
-        norm /= std::sqrt((w_sum * w_sum - w2_sum) / 2.0);
-        for (size_t i = 0; i < weights.size(); i++) {
-            weights[i] = weights[i] * norm;
-        }
+        double norm = std::sqrt(0.5 * n * (n - 1)) / perm_sum(weights, 2);
+        for (size_t i = 0; i < weights.size(); i++)
+            weights[i]  *= norm;
     }
 }
 
@@ -39,7 +48,12 @@ std::vector<size_t> invert_permuation(const std::vector<size_t>& perm)
 
 class Sorter {
 public:
-    Sorter(const std::vector<double>& x, bool ascending = true) : x_(x) {}
+    Sorter(const std::vector<double>& x, bool ascending = true) :
+        x_(x),
+        ascending_(ascending)
+    {
+
+    }
 
     inline bool operator()(size_t i, size_t j) const
     {
