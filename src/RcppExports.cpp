@@ -5,36 +5,50 @@
 
 using namespace Rcpp;
 
-// fast_ktau_cpp
-double fast_ktau_cpp(const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& weights);
-RcppExport SEXP _wdm_fast_ktau_cpp(SEXP xSEXP, SEXP ySEXP, SEXP weightsSEXP) {
+// ktau_cpp
+double ktau_cpp(const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& weights);
+RcppExport SEXP _wdm_ktau_cpp(SEXP xSEXP, SEXP ySEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::vector<double>& >::type x(xSEXP);
     Rcpp::traits::input_parameter< const std::vector<double>& >::type y(ySEXP);
     Rcpp::traits::input_parameter< const std::vector<double>& >::type weights(weightsSEXP);
-    rcpp_result_gen = Rcpp::wrap(fast_ktau_cpp(x, y, weights));
+    rcpp_result_gen = Rcpp::wrap(ktau_cpp(x, y, weights));
     return rcpp_result_gen;
 END_RCPP
 }
-// fast_hoeffd_cpp
-double fast_hoeffd_cpp(const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& weights);
-RcppExport SEXP _wdm_fast_hoeffd_cpp(SEXP xSEXP, SEXP ySEXP, SEXP weightsSEXP) {
+// hoeffd_cpp
+double hoeffd_cpp(const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& weights);
+RcppExport SEXP _wdm_hoeffd_cpp(SEXP xSEXP, SEXP ySEXP, SEXP weightsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::vector<double>& >::type x(xSEXP);
     Rcpp::traits::input_parameter< const std::vector<double>& >::type y(ySEXP);
     Rcpp::traits::input_parameter< const std::vector<double>& >::type weights(weightsSEXP);
-    rcpp_result_gen = Rcpp::wrap(fast_hoeffd_cpp(x, y, weights));
+    rcpp_result_gen = Rcpp::wrap(hoeffd_cpp(x, y, weights));
+    return rcpp_result_gen;
+END_RCPP
+}
+// prho_cpp
+double prho_cpp(const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& weights);
+RcppExport SEXP _wdm_prho_cpp(SEXP xSEXP, SEXP ySEXP, SEXP weightsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::vector<double>& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const std::vector<double>& >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const std::vector<double>& >::type weights(weightsSEXP);
+    rcpp_result_gen = Rcpp::wrap(prho_cpp(x, y, weights));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_wdm_fast_ktau_cpp", (DL_FUNC) &_wdm_fast_ktau_cpp, 3},
-    {"_wdm_fast_hoeffd_cpp", (DL_FUNC) &_wdm_fast_hoeffd_cpp, 3},
+    {"_wdm_ktau_cpp", (DL_FUNC) &_wdm_ktau_cpp, 3},
+    {"_wdm_hoeffd_cpp", (DL_FUNC) &_wdm_hoeffd_cpp, 3},
+    {"_wdm_prho_cpp", (DL_FUNC) &_wdm_prho_cpp, 3},
     {NULL, NULL, 0}
 };
 
