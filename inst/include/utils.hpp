@@ -6,6 +6,17 @@
 
 namespace utils {
 
+inline void check_sizes(const std::vector<double>& x,
+                        const std::vector<double>& y,
+                        const std::vector<double>& weights)
+{
+    if (y.size() != x.size())
+        throw std::runtime_error("x and y must have the same size.");
+    if ((weights.size() > 0) && (weights.size() != y.size()))
+        throw std::runtime_error("x, y, and weights must have the same size.");
+}
+
+
 //! computes the nth power for all lements in a vector.
 //! @param x the inpute vector.
 //! @param n the exponent.
@@ -60,8 +71,8 @@ public:
     //! @param x the reference vector.
     //! @param ascending whether to sort in ascending or descending order.
     Sorter(const std::vector<double>& x, bool ascending = true) :
-        x_(x),
-        ascending_(ascending) {}
+    x_(x),
+    ascending_(ascending) {}
 
     //! comparison operator.
     //! @param i first index.

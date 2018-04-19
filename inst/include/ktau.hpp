@@ -183,13 +183,7 @@ inline double ktau(std::vector<double> x,
                    std::vector<double> y,
                    std::vector<double> weights = std::vector<double>())
 {
-    // 0. Check input sizes
-    size_t n = x.size();
-    if (y.size() != n)
-        throw std::runtime_error("lengths of x and y must match.");
-    bool weighted = (weights.size() > 0);
-    if (weighted && (weights.size() != n))
-        throw std::runtime_error("lengths of x, y, and weights must match.");
+    utils::check_sizes(x, y, weights);
 
     // 1.1 Sort x, y, and weights in x order; break ties in according to y.
     utils::sort_all(x, y, weights);
@@ -206,6 +200,8 @@ inline double ktau(std::vector<double> x,
     double ties_y = count_ties(y, weights);
 
     // 3. Calculate Kendall's tau.
+    if (weights.size() == 0)
+        weights = std::vector<double>(x.size(), 1.0);
     double num_pairs = utils::perm_sum(weights, 2);
     double num_c = num_pairs - (num_d + ties_x + ties_y - ties_both);
     double tau = num_c - num_d;

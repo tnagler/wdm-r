@@ -115,11 +115,7 @@ inline std::vector<double> bivariate_rank(
         std::vector<double> y,
         std::vector<double> weights = std::vector<double>())
 {
-    // sanity checks
-    if (x.size() != y.size())
-        throw std::runtime_error("x and y must have the same size.");
-    if ((weights.size()) > 0 && (weights.size() != y.size()))
-        throw std::runtime_error("x and y weights must have the same size.");
+    utils::check_sizes(x, y, weights);
 
     // get inverse of permutation that brings x in ascending order
     std::vector<size_t> perm_x = utils::get_order(x);
@@ -151,35 +147,40 @@ inline double hoeffd(std::vector<double> x,
                      std::vector<double> y,
                      std::vector<double> weights = std::vector<double>())
 {
-    // 0. Check input sizes
-    size_t n = x.size();
-    if (y.size() != n)
-        throw std::runtime_error("lengths of x and y must match.");
-    bool weighted = (weights.size() > 0);
-    if (weighted && (weights.size() != n))
-        throw std::runtime_error("lengths of x, y, and weights must match.");
-
-    if (weights.size() == 0)
-        weights = std::vector<double>(n, 1);
+    utils::check_sizes(x, y, weights);
 
     // 1. Compute (weighted) ranks
     std::vector<double> R_X = utils::compute_ranks(x, weights);
-    std::vector<double> S_X = utils::compute_ranks(x, utils::pow(weights, 2));
     std::vector<double> R_Y = utils::compute_ranks(y, weights);
-    std::vector<double> S_Y = utils::compute_ranks(y, utils::pow(weights, 2));
+    std::vector<double> S_X, S_Y;
+    if (weights.size() > 0) {
+        S_X = utils::compute_ranks(x, utils::pow(weights, 2));
+        S_Y = utils::compute_ranks(y, utils::pow(weights, 2));
+    } else {
+        S_X = R_X;
+        S_Y = R_Y;
+    }
 
     // 2. Compute (weighted) bivariate ranks (number of points w/ both columns
     // less than the ith row).
-    std::vector<double> R_XY(n), S_XY(n), T_XY(n), U_XY(n);
+    std::vector<double> R_XY, S_XY, T_XY, U_XY;
     R_XY = bivariate_rank(x, y, weights);
-    S_XY = bivariate_rank(x, y, utils::pow(weights, 2));
-    T_XY = bivariate_rank(x, y, utils::pow(weights, 3));
-    U_XY = bivariate_rank(x, y, utils::pow(weights, 4));
+    if (weights.size() > 0) {
+        S_XY = bivariate_rank(x, y, utils::pow(weights, 2));
+        T_XY = bivariate_rank(x, y, utils::pow(weights, 3));
+        U_XY = bivariate_rank(x, y, utils::pow(weights, 4));
+    } else {
+        S_XY = R_XY;
+        T_XY = R_XY;
+        U_XY = R_XY;
+    }
 
 
     // 3. Compute (weighted) Hoeffdings' D
+    if (weights.size() == 0)
+        weights = std::vector<double>(x.size(), 1.0);
     double A_1 = 0.0, A_2 = 0.0, A_3 = 0.0;
-    for (size_t i = 0; i < n; i++) {
+    for (size_t i = 0; i < x.size(); i++) {
         A_1 += (R_XY[i] * R_XY[i] - S_XY[i]) * weights[i];
         A_2 += (
             (R_X[i] * R_Y[i] - S_XY[i]) * R_XY[i] -
