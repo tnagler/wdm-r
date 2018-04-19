@@ -6,7 +6,28 @@
 
 namespace utils {
 
+//! computes the nth power for all lements in a vector.
+//! @param x the inpute vector.
+//! @param n the exponent.
+//! @return the vector x, but with all elements taken to the power n.
+inline std::vector<double> pow(const std::vector<double>& x, size_t n)
+{
+    std::vector<double> res(x.size(), 1.0);
+    if (n > 0) {
+        for (size_t i = 0; i < x.size(); i++) {
+            for (size_t j = 0; j < n; j++) {
+                res[i] *= x[i];
+            }
+        }
+    }
 
+    return res;
+}
+
+//! computes the sum of the products of all k-permutations of elements in a
+//! vector using Newton's identities.
+//! @param x the inpute vector.
+//! @param k the order of the permutation.
 inline double perm_sum(const std::vector<double>& x, size_t k) {
     if (k == 0)
         return 1.0;
@@ -46,8 +67,13 @@ std::vector<size_t> invert_permuation(const std::vector<size_t>& perm)
     return inv_perm;
 }
 
+//! Class providing an operator `(i, j)` that compares x[j] with x[j]; to be
+//! used with `std::sort()`.
 class Sorter {
 public:
+    //! Constructor
+    //! @param x the reference vector.
+    //! @param ascending whether to sort in ascending or descending order.
     Sorter(const std::vector<double>& x, bool ascending = true) :
         x_(x),
         ascending_(ascending)
@@ -55,6 +81,11 @@ public:
 
     }
 
+    //! comparison operator.
+    //! @param i first index.
+    //! @param j second index.
+    //! @return `(x_[i] < x_[j])` for ascending order; `(x_[i] > x_[j])` for
+    //! descending order.
     inline bool operator()(size_t i, size_t j) const
     {
         if (ascending_)
@@ -408,7 +439,7 @@ inline void merge_count_per_element(std::vector<double>& vec,
         } else {
             vec[k] = vec2[j];
             if (weighted) {
-                counts[k] = counts2[j] + (w1_sum - w_acc) * weights2[j];
+                counts[k] = counts2[j] + w1_sum - w_acc;
                 weights[k] = weights2[j];
             } else {
                 counts[k] = counts2[j] + vec1.size() - i;
