@@ -8,6 +8,14 @@
 \description{
 Provides efficient implementations of weighted dependence measures.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/tnagler/wdm}
+  \item Report bugs at \url{https://github.com/tnagler/wdm/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Thomas Nagler \email{mail@tnagler.com}
 

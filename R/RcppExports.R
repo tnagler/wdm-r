@@ -2,17 +2,12 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 #' @export
-fast_ktau_cpp <- function(x, weights) {
-    .Call(`_wdm_fast_ktau_cpp`, x, weights)
+fast_ktau_cpp <- function(x, y, weights) {
+    .Call(`_wdm_fast_ktau_cpp`, x, y, weights)
 }
 
 #' @export
-fast_hoeffd_cpp <- function(x, weights) {
-    .Call(`_wdm_fast_hoeffd_cpp`, x, weights)
-}
-
-#' @export
-fast_hoeffd2_cpp <- function(x, weights) {
-    .Call(`_wdm_fast_hoeffd2_cpp`, x, weights)
+fast_hoeffd_cpp <- function(x, y, weights) {
+    .Call(`_wdm_fast_hoeffd_cpp`, x, y, weights)
 }
 
