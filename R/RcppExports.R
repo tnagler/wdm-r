@@ -36,3 +36,8 @@ indep_test_asymptotic_cpp <- function(x, y, method, weights) {
     .Call(`_wdm_indep_test_asymptotic_cpp`, x, y, method, weights)
 }
 
+#' @export
+indep_test_bootstrap_cpp <- function(x, y, method, weights, n_boot, seed) {
+    .Call(`_wdm_indep_test_bootstrap_cpp`, x, y, method, weights, n_boot, seed)
+}
+
