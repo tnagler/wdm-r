@@ -35,6 +35,15 @@ inline std::vector<double> pow(const std::vector<double>& x, size_t n)
     return res;
 }
 
+//! sums all elements in a vector.
+//! @param x the inpute vector.
+inline double sum(const std::vector<double>& x) {
+    double res = 0.0;
+    for (size_t i = 0; i < x.size(); i++)
+        res += x[i];
+    return res;
+}
+
 //! computes the sum of the products of all k-permutations of elements in a
 //! vector using Newton's identities.
 //! @param x the inpute vector.
@@ -43,13 +52,18 @@ inline double perm_sum(const std::vector<double>& x, size_t k) {
     if (k == 0)
         return 1.0;
     double s = 0;
-    for (size_t i = 1; i <= k; i++) {
-        double xi_sum = 0.0;
-        for (size_t j = 0; j < x.size(); j++)
-            xi_sum += std::pow(x[j], i);
-        s += std::pow(-1, i - 1) * perm_sum(x, k - i) * xi_sum;
-    }
+    for (size_t i = 1; i <= k; i++)
+        s += std::pow(-1, i - 1) * perm_sum(x, k - i) * sum(pow(x, i));
     return s / k;
+}
+
+//! computes the effective sample size from a sequence of weights.
+//! @param the weight sequence.
+inline double effective_sample_size(const std::vector<double>& weights) {
+    double eff_n = std::pow(utils::sum(weights), 2);
+    eff_n /= utils::sum(utils::pow(weights, 2));
+
+    return eff_n;
 }
 
 //! inverts a permutation.

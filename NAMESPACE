@@ -2,6 +2,7 @@
 
 export(bivariate_rank_cpp)
 export(hoeffd_cpp)
+export(indep_test_asymptotic_cpp)
 export(ktau_cpp)
 export(prho_cpp)
 export(rank_scores_cpp)

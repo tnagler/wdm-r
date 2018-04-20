@@ -31,3 +31,8 @@ bivariate_rank_cpp <- function(x, y, weights) {
     .Call(`_wdm_bivariate_rank_cpp`, x, y, weights)
 }
 
+#' @export
+indep_test_asymptotic_cpp <- function(x, y, method, weights) {
+    .Call(`_wdm_indep_test_asymptotic_cpp`, x, y, method, weights)
+}
+

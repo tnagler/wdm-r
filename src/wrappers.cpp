@@ -3,6 +3,7 @@
 #include "hoeffd.hpp"
 #include "prho.hpp"
 #include "srho.hpp"
+#include "indep_test.hpp"
 
 //' @export
 // [[Rcpp::export]]
@@ -57,4 +58,15 @@ std::vector<double> bivariate_rank_cpp(const std::vector<double>& x,
 {
     return hoeffd::bivariate_rank(x, y, weights);
 }
+
+//' @export
+// [[Rcpp::export]]
+double indep_test_asymptotic_cpp(const std::vector<double>& x,
+                                 const std::vector<double>& y,
+                                 std::string method,
+                                 const std::vector<double>& weights)
+{
+    return indep_test::indep_test_asymptotic(x, y, method, weights);
+}
+
 
