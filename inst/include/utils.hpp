@@ -129,19 +129,34 @@ std::vector<size_t> get_order(const std::vector<double>& x,
 }
 
 
-//! computes ranks (such that smallest element has rank 0).
+//! computes ranks (such that smallest element has rank 0), assigning average
+//! ranks for ties.
 //! @param x input vector.
 //! @return a vector containing the ranks of each element in `x`.
-std::vector<double> compute_ranks(std::vector<double> x,
-                                  std::vector<double> weights = std::vector<double>())
+std::vector<double> rank_scores(std::vector<double> x,
+                                std::vector<double> weights = std::vector<double>())
 {
+    size_t n = x.size();
     if (weights.size() == 0)
-        weights = std::vector<double>(x.size(), 1.0);
+        weights = std::vector<double>(n, 1.0);
+
     std::vector<size_t> perm = get_order(x);
-    double w_acc = 0.0;
-    for (size_t i = 0; i < x.size(); i++) {
-        x[perm[i]] = w_acc;
-        w_acc += weights[perm[i]];
+
+    double w_acc = 0.0, w_batch;
+    for (size_t i = 0, reps; i < n; i += reps) {
+        // find replications
+        reps = 1;
+        w_batch = 0.0;
+        while ((i + reps < n) && (x[perm[i]] == x[perm[i + reps]])) {
+            w_batch += weights[perm[i]];
+            ++reps;
+        }
+
+        // assign average rank of the tied values
+        for (size_t k = 0; k < reps; ++k) {
+            x[perm[i + k]] = w_acc + w_batch / 2.0;
+            w_acc += weights[perm[i]];
+        }
     }
 
     return x;

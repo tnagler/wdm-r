@@ -2,6 +2,7 @@
 #include "ktau.hpp"
 #include "hoeffd.hpp"
 #include "prho.hpp"
+#include "srho.hpp"
 
 //' @export
 // [[Rcpp::export]]
@@ -30,3 +31,30 @@ double prho_cpp(const std::vector<double>& x,
 {
     return prho::prho(x, y, weights);
 }
+
+//' @export
+// [[Rcpp::export]]
+double srho_cpp(const std::vector<double>& x,
+                const std::vector<double>& y,
+                const std::vector<double>& weights)
+{
+    return srho::srho(x, y, weights);
+}
+
+//' @export
+// [[Rcpp::export]]
+std::vector<double> rank_scores_cpp(const std::vector<double>& x,
+                                    const std::vector<double>& weights)
+{
+    return utils::rank_scores(x, weights);
+}
+
+//' @export
+// [[Rcpp::export]]
+std::vector<double> bivariate_rank_cpp(const std::vector<double>& x,
+                                       const std::vector<double>& y,
+                                       const std::vector<double>& weights)
+{
+    return hoeffd::bivariate_rank(x, y, weights);
+}
+

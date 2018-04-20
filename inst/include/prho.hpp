@@ -1,9 +1,11 @@
 #pragma once
+
 #include "utils.hpp"
+
 
 namespace prho {
 
-//! fast calculation of the weighted Pearsons correlation.
+//! fast calculation of the weighted Pearson's correlation.
 //! @param x, y input data.
 //! @param weights an optional vector of weights for the data.
 inline double prho(std::vector<double> x,

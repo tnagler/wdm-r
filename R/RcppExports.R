@@ -16,3 +16,18 @@ prho_cpp <- function(x, y, weights) {
     .Call(`_wdm_prho_cpp`, x, y, weights)
 }
 
+#' @export
+srho_cpp <- function(x, y, weights) {
+    .Call(`_wdm_srho_cpp`, x, y, weights)
+}
+
+#' @export
+rank_scores_cpp <- function(x, weights) {
+    .Call(`_wdm_rank_scores_cpp`, x, weights)
+}
+
+#' @export
+bivariate_rank_cpp <- function(x, y, weights) {
+    .Call(`_wdm_bivariate_rank_cpp`, x, y, weights)
+}
+
