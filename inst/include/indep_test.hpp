@@ -151,7 +151,7 @@ inline double indep_test_bootstrap(
         std::string method,
         std::vector<double> weights = std::vector<double>(),
         size_t n_boot = 1000,
-        int seed = std::numeric_limits<int>::quiet_NaN())
+        int seed = 0)
 {
     double stat = calculate_test_stat(x, y, method, weights);
     size_t n = x.size();
@@ -159,10 +159,8 @@ inline double indep_test_bootstrap(
         weights = std::vector<double>(n, 1.0);
 
     // setup exponential RNG
-    std::random_device rd;
-    if (std::isnan(seed))
-        seed = rd();
-    std::mt19937 gen(seed);
+    std::mt19937 mt;
+    mt.seed(seed);
     std::exponential_distribution<> std_exp(1);
 
     std::vector<double> xi(n);
@@ -170,7 +168,7 @@ inline double indep_test_bootstrap(
     for (size_t k = 0; k < n_boot; k++) {
         // simulate standard exponential weights
         for (size_t i = 0; i < n; i++)
-            xi[i] = std_exp(gen);
+            xi[i] = std_exp(mt);
 
         // standardize weights
         double xi_sum = utils::sum(xi);

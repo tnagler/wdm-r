@@ -90,7 +90,7 @@ double indep_test_bootstrap_cpp(const std::vector<double>& x,
                                 size_t n_boot,
                                 int seed)
 {
-    return indep_test::indep_test_asymptotic(x, y, method, weights);
+    return indep_test::indep_test_bootstrap(x, y, method, weights, n_boot, seed);
 }
 
 
