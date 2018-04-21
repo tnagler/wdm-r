@@ -3,6 +3,7 @@
 #include "hoeffd.hpp"
 #include "prho.hpp"
 #include "srho.hpp"
+#include "bbeta.hpp"
 #include "indep_test.hpp"
 
 //' @export
@@ -41,6 +42,17 @@ double srho_cpp(const std::vector<double>& x,
 {
     return srho::srho(x, y, weights);
 }
+
+
+//' @export
+// [[Rcpp::export]]
+double bbeta_cpp(const std::vector<double>& x,
+                 const std::vector<double>& y,
+                 const std::vector<double>& weights)
+{
+    return bbeta::bbeta(x, y, weights);
+}
+
 
 //' @export
 // [[Rcpp::export]]

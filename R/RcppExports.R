@@ -22,6 +22,11 @@ srho_cpp <- function(x, y, weights) {
 }
 
 #' @export
+bbeta_cpp <- function(x, y, weights) {
+    .Call(`_wdm_bbeta_cpp`, x, y, weights)
+}
+
+#' @export
 rank_scores_cpp <- function(x, weights) {
     .Call(`_wdm_rank_scores_cpp`, x, weights)
 }
