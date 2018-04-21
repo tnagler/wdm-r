@@ -13,8 +13,8 @@ inline double srho(std::vector<double> x,
                    std::vector<double> weights = std::vector<double>())
 {
     utils::check_sizes(x, y, weights);
-    x = utils::rank_scores(x, weights);
-    y = utils::rank_scores(y, weights);
+    x = utils::rank_scores(x, weights, "average");
+    y = utils::rank_scores(y, weights, "average");
     return prho::prho(x, y, weights);
 }
 

@@ -36,12 +36,26 @@ inline std::vector<double> pow(const std::vector<double>& x, size_t n)
 }
 
 //! sums all elements in a vector.
-//! @param x the inpute vector.
+//! @param x the input vector.
 inline double sum(const std::vector<double>& x) {
     double res = 0.0;
     for (size_t i = 0; i < x.size(); i++)
         res += x[i];
     return res;
+}
+
+//! computes the median of a vector.
+//! @param x the input vector.
+inline double median(std::vector<double> x) {
+    size_t n = x.size();
+    std::sort(x.begin(), x.end(), std::less<double>());
+    double med;
+    if (n % 2 == 0)
+        med = 0.5 * (x[n / 2 - 1] + x[n / 2]);
+    else
+        med = x[n / 2];
+
+    return med;
 }
 
 //! computes the sum of the products of all k-permutations of elements in a
@@ -146,9 +160,12 @@ std::vector<size_t> get_order(const std::vector<double>& x,
 //! computes ranks (such that smallest element has rank 0), assigning average
 //! ranks for ties.
 //! @param x input vector.
+//! @param ties_method `"min"` (default) assigns all tied values the minimum
+//!   score; `"average"` assigns the average score.
 //! @return a vector containing the ranks of each element in `x`.
 std::vector<double> rank_scores(std::vector<double> x,
-                                std::vector<double> weights = std::vector<double>())
+                                std::vector<double> weights = std::vector<double>(),
+                                std::string ties_method = "min")
 {
     size_t n = x.size();
     if (weights.size() == 0)
@@ -157,6 +174,8 @@ std::vector<double> rank_scores(std::vector<double> x,
     std::vector<size_t> perm = get_order(x);
 
     double w_acc = 0.0, w_batch;
+    if ((ties_method != "min") && (ties_method != "average"))
+        throw std::runtime_error("ties_method must be either 'min' or 'average.");
     for (size_t i = 0, reps; i < n; i += reps) {
         // find replications
         reps = 1;
@@ -168,9 +187,16 @@ std::vector<double> rank_scores(std::vector<double> x,
 
         // assign average rank of the tied values
         for (size_t k = 0; k < reps; ++k) {
-            x[perm[i + k]] = w_acc + w_batch / 2.0;
-            w_acc += weights[perm[i]];
+            if (ties_method == "min")
+                x[perm[i + k]] = w_acc;
+            else
+                x[perm[i + k]] = w_acc + w_batch / 2.0;
         }
+
+        // accumulate weights for current batch
+        for (size_t k = 0; k < reps; ++k)
+            w_acc += weights[perm[i + k]];
+
     }
 
     return x;
