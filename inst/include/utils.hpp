@@ -74,10 +74,10 @@ inline double perm_sum(const std::vector<double>& x, size_t k) {
 //! computes the effective sample size from a sequence of weights.
 //! @param the weight sequence.
 inline double effective_sample_size(const std::vector<double>& weights) {
-    double eff_n = std::pow(utils::sum(weights), 2);
-    eff_n /= utils::sum(utils::pow(weights, 2));
+    double n_eff = std::pow(utils::sum(weights), 2);
+    n_eff /= utils::sum(utils::pow(weights, 2));
 
-    return eff_n;
+    return n_eff;
 }
 
 //! inverts a permutation.

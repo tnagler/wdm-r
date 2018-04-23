@@ -121,7 +121,7 @@ inline double calculate_asymptotic_p_val(double stat,
 //!   `"ktau"`, `"hoeffd"`.
 //! @param weights an optional vector of weights for the data.
 //! @return the p-value of the independence test.
-inline double indep_test_asymptotic(
+inline double indep_test(
         const std::vector<double>& x,
         const std::vector<double>& y,
         std::string method,
@@ -129,64 +129,11 @@ inline double indep_test_asymptotic(
 {
     utils::check_sizes(x, y, weights);
     double stat = calculate_test_stat(x, y, method, weights);
-    double n_eff = utils::effective_sample_size(weights);
+    double n_eff = static_cast<double>(x.size());
+    if (weights.size() > 0)
+        n_eff = utils::effective_sample_size(weights);
 
     return calculate_asymptotic_p_val(stat, method, n_eff);
-}
-
-
-//! calculates bootstrap p-values of independence tests based on (weighted)
-//! dependence measures.
-//! @param x, y input data.
-//! @param method the dependence measure; possible values: `"prho"`, `"srho"`,
-//!   `"ktau"`, `"hoeffd"`.
-//! @param weights an optional vector of weights for the data.
-//! @param n_boot number of bootstrap replicates.
-//! @param seed seed for random number generation; the default (nan) uses a
-//!   random seed.
-//! @return the p-value of the independence test.
-inline double indep_test_bootstrap(
-        const std::vector<double>& x,
-        const std::vector<double>& y,
-        std::string method,
-        std::vector<double> weights = std::vector<double>(),
-        size_t n_boot = 1000,
-        int seed = 0)
-{
-    double stat = calculate_test_stat(x, y, method, weights);
-    size_t n = x.size();
-    if (weights.size() == 0)
-        weights = std::vector<double>(n, 1.0);
-
-    // setup exponential RNG
-    std::mt19937 mt;
-    mt.seed(seed);
-    std::exponential_distribution<> std_exp(1);
-
-    std::vector<double> xi(n);
-    double p_val = 0.0;
-    for (size_t k = 0; k < n_boot; k++) {
-        // simulate standard exponential weights
-        for (size_t i = 0; i < n; i++)
-            xi[i] = std_exp(mt);
-
-        // standardize weights
-        double xi_sum = utils::sum(xi);
-        for (size_t i = 0; i < n; i++)
-            xi[i] /= xi_sum;
-
-        // combine input and bootstrap weights
-        for (size_t i = 0; i < n; i++)
-            xi[i] *= weights[i];
-
-        // calculate bootstrapped version of dependence measure
-        double stat_boot = calculate_test_stat(x, y, method, xi);
-
-        if (std::abs(stat_boot) > std::abs(stat))
-            p_val++;
-    }
-
-    return p_val / n_boot;
 }
 
 }
