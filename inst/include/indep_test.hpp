@@ -5,6 +5,7 @@
 #include "hoeffd.hpp"
 #include "prho.hpp"
 #include "srho.hpp"
+#include "bbeta.hpp"
 #include <boost/math/special_functions/atanh.hpp>
 #include <boost/math/constants/constants.hpp>
 #include <boost/math/interpolators/cubic_b_spline.hpp>
@@ -85,6 +86,9 @@ inline double calculate_test_stat(
     } else if (method == "srho") {
         stat = boost::math::atanh(srho::srho(x, y, weights));
         stat *= std::sqrt((n_eff - 3) / 1.06);
+    }  else if (method == "bbeta") {
+        stat = bbeta::bbeta(x, y, weights);
+        stat *= std::sqrt(n_eff);
     } else {
         throw std::runtime_error("method not impolemented.");
     }
