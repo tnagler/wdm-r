@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: person("Thomas", "Nagler", email = "mail@tnagler.com", role = c("aut", "cre"))
 Description: Provides efficient implementations of weighted dependence measures.
 Depends: R (>= 3.2.0)
-License: What license is it under?
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 LinkingTo:

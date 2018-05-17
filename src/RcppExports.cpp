@@ -123,15 +123,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// test
-void test();
-RcppExport SEXP _wdm_test() {
-BEGIN_RCPP
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    test();
-    return R_NilValue;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_wdm_ktau_cpp", (DL_FUNC) &_wdm_ktau_cpp, 3},
@@ -143,7 +134,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_wdm_bivariate_rank_cpp", (DL_FUNC) &_wdm_bivariate_rank_cpp, 3},
     {"_wdm_wdm_cpp", (DL_FUNC) &_wdm_wdm_cpp, 4},
     {"_wdm_indeptest_cpp", (DL_FUNC) &_wdm_indeptest_cpp, 4},
-    {"_wdm_test", (DL_FUNC) &_wdm_test, 0},
     {NULL, NULL, 0}
 };
 
