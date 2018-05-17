@@ -6,3 +6,8 @@
 #include "wdm/srho.hpp"
 #include "wdm/bbeta.hpp"
 #include "wdm/indeptest.hpp"
+
+//! Weighted dependence measures
+namespace wdm {
+    
+}
