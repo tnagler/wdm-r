@@ -37,7 +37,17 @@ bivariate_rank_cpp <- function(x, y, weights) {
 }
 
 #' @export
-indep_test_cpp <- function(x, y, method, weights) {
-    .Call(`_wdm_indep_test_cpp`, x, y, method, weights)
+wdm_cpp <- function(x, y, method, weights) {
+    .Call(`_wdm_wdm_cpp`, x, y, method, weights)
+}
+
+#' @export
+indeptest_cpp <- function(x, y, method, weights) {
+    .Call(`_wdm_indeptest_cpp`, x, y, method, weights)
+}
+
+#' @export
+test <- function() {
+    invisible(.Call(`_wdm_test`))
 }
 

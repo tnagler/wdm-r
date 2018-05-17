@@ -70,10 +70,43 @@ std::vector<double> bivariate_rank_cpp(const std::vector<double>& x,
 
 //' @export
 // [[Rcpp::export]]
-double indep_test_cpp(const std::vector<double>& x,
-                                 const std::vector<double>& y,
-                                 std::string method,
-                                 const std::vector<double>& weights)
+double wdm_cpp(const std::vector<double>& x,
+               const std::vector<double>& y,
+               std::string method,
+               const std::vector<double>& weights)
 {
-    return indep_test(x, y, method, weights);
+    return wdm::wdm(x, y, method, weights);
+}
+
+
+//' @export
+// [[Rcpp::export]]
+double indeptest_cpp(const std::vector<double>& x,
+                     const std::vector<double>& y,
+                     std::string method,
+                     const std::vector<double>& weights)
+{
+    return indeptest(x, y, method, weights);
+}
+
+//' @export
+// [[Rcpp::export]]
+void test()
+{
+    // input vectors
+    std::vector<double> x{1, 3, 2, 5, 3, 2, 20, 15};
+    std::vector<double> y{2, 12, 4, 7, 8, 14, 17, 6};
+
+    // weights
+    std::vector<double> w{1, 1, 2, 2, 1, 0, 0.5, 0.3};
+
+    // unweighted Kendall's tau
+    std::cout << "Kendall's tau: " << wdm::ktau(x, y) << std::endl;
+    // or: wdm::wdm(x, y, "ktau")
+    std::cout << "p-value: " << wdm::indeptest(x, y, "ktau") << std::endl;
+
+    // weighted Kendall's tau
+    std::cout << "Kendall's tau: " << wdm::ktau(x, y, w) << std::endl;
+    // or: wdm::wdm(x, y, "ktau", w)
+    std::cout << "p-value: " << wdm::indeptest(x, y, "ktau", w) << std::endl;
 }

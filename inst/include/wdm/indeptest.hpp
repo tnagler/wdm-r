@@ -91,7 +91,7 @@ inline double calculate_test_stat(
         stat = bbeta(x, y, weights);
         stat *= std::sqrt(n_eff);
     } else {
-        throw std::runtime_error("method not impolemented.");
+        throw std::runtime_error("method not implemented.");
     }
 
     return stat;
@@ -123,10 +123,10 @@ inline double calculate_asymptotic_p_val(double stat,
 //! dependence measures.
 //! @param x, y input data.
 //! @param method the dependence measure; possible values: `"prho"`, `"srho"`,
-//!   `"ktau"`, `"hoeffd"`.
+//!   `"ktau"`, `"bbeta"`, `"hoeffd"`.
 //! @param weights an optional vector of weights for the data.
 //! @return the p-value of the independence test.
-inline double indep_test(
+inline double indeptest(
         const std::vector<double>& x,
         const std::vector<double>& y,
         std::string method,
