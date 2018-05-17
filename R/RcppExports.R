@@ -33,6 +33,10 @@ wdm_cpp <- function(x, y, method, weights) {
     .Call(`_wdm_wdm_cpp`, x, y, method, weights)
 }
 
+wdm_mat_cpp <- function(x, method, weights) {
+    .Call(`_wdm_wdm_mat_cpp`, x, method, weights)
+}
+
 indeptest_cpp <- function(x, y, method, weights) {
     .Call(`_wdm_indeptest_cpp`, x, y, method, weights)
 }

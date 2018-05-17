@@ -109,6 +109,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// wdm_mat_cpp
+Rcpp::NumericMatrix wdm_mat_cpp(const Rcpp::NumericMatrix& x, std::string method, const std::vector<double>& weights);
+RcppExport SEXP _wdm_wdm_mat_cpp(SEXP xSEXP, SEXP methodSEXP, SEXP weightsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type method(methodSEXP);
+    Rcpp::traits::input_parameter< const std::vector<double>& >::type weights(weightsSEXP);
+    rcpp_result_gen = Rcpp::wrap(wdm_mat_cpp(x, method, weights));
+    return rcpp_result_gen;
+END_RCPP
+}
 // indeptest_cpp
 double indeptest_cpp(const std::vector<double>& x, const std::vector<double>& y, std::string method, const std::vector<double>& weights);
 RcppExport SEXP _wdm_indeptest_cpp(SEXP xSEXP, SEXP ySEXP, SEXP methodSEXP, SEXP weightsSEXP) {
@@ -133,6 +146,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_wdm_rank_scores_cpp", (DL_FUNC) &_wdm_rank_scores_cpp, 2},
     {"_wdm_bivariate_rank_cpp", (DL_FUNC) &_wdm_bivariate_rank_cpp, 3},
     {"_wdm_wdm_cpp", (DL_FUNC) &_wdm_wdm_cpp, 4},
+    {"_wdm_wdm_mat_cpp", (DL_FUNC) &_wdm_wdm_mat_cpp, 3},
     {"_wdm_indeptest_cpp", (DL_FUNC) &_wdm_indeptest_cpp, 4},
     {NULL, NULL, 0}
 };

@@ -1,3 +1,0 @@
-[submodule "inst/wdmcpp"]
-	path = inst/include/wdm
-	url = git@github.com:tnagler/wdmcpp.git
