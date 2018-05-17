@@ -1,5 +1,5 @@
 # wdm
-A header-only C++ library for weighted dependence measures
+A header-only C++11 library for weighted dependence measures
 
 Provides an efficient implementation of weighted dependence measures:
 
