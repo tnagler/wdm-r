@@ -8,6 +8,7 @@ namespace wdm {
 //! @param x input vector.
 //! @param ties_method `"min"` (default) assigns all tied values the minimum
 //!   score; `"average"` assigns the average score.
+//! @param weights (optional), weights for each observation.
 //! @return a vector containing the ranks of each element in `x`.
 std::vector<double> rank_scores(
     std::vector<double> x,
@@ -51,7 +52,7 @@ std::vector<double> rank_scores(
 //! computes the bivariate rank of a pair of vectors (starting at 0).
 //! @param x first input vector.
 //! @param y second input vecotr.
-//! @param (optional), weights for each observation.
+//! @param weights (optional), weights for each observation.
 inline std::vector<double> bivariate_rank(
         std::vector<double> x,
         std::vector<double> y,
