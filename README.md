@@ -27,12 +27,14 @@ std::vector<double> y{2, 12, 4, 7, 8, 14, 17, 6};
 std::vector<double> w{1, 1, 2, 2, 1, 0, 0.5, 0.3};
 
 // unweighted Kendall's tau
-std::cout << "Kendall's tau: " << ktau(x, y) << std::endl;
-std::cout << "p-value: " << indeptest(x, y, "ktau") << std::endl;
+std::cout << "Kendall's tau: " << wdm::ktau(x, y) << std::endl;
+// or: wdm::wdm(x, y, "ktau")
+std::cout << "p-value: " << wdm::indeptest(x, y, "ktau") << std::endl;
 
 // weighted Kendall's tau
-std::cout << "Kendall's tau: " << ktau(x, y, w) << std::endl;
-std::cout << "p-value: " << indeptest(x, y, "ktau", w) << std::endl;
+std::cout << "Kendall's tau: " << wdm::ktau(x, y, w) << std::endl;
+// or: wdm::wdm(x, y, "ktau", w)
+std::cout << "p-value: " << wdm::indeptest(x, y, "ktau", w) << std::endl;
 ```
 Output:
 ```
