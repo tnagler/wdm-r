@@ -1,5 +1,5 @@
 #include <Rcpp.h>
-#include "wdm.hpp"
+#include "wdmcpp/wdm.hpp"
 
 using namespace wdm;
 
