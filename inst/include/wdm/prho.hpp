@@ -3,7 +3,7 @@
 #include "utils.hpp"
 
 
-namespace prho {
+namespace wdm {
 
 //! fast calculation of the weighted Pearson's correlation.
 //! @param x, y input data.
@@ -12,7 +12,7 @@ inline double prho(std::vector<double> x,
                    std::vector<double> y,
                    std::vector<double> weights = std::vector<double>())
 {
-    utils::check_sizes(x, y, weights);
+    wdm_utils::check_sizes(x, y, weights);
     size_t n = x.size();
     if (weights.size() == 0)
         weights = std::vector<double>(x.size(), 1.0);

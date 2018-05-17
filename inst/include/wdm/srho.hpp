@@ -1,9 +1,10 @@
 #pragma once
 
 #include "utils.hpp"
+#include "ranks.hpp"
 #include "prho.hpp"
 
-namespace srho {
+namespace wdm {
 
 //! fast calculation of the weighted Spearman's rho.
 //! @param x, y input data.
@@ -12,10 +13,10 @@ inline double srho(std::vector<double> x,
                    std::vector<double> y,
                    std::vector<double> weights = std::vector<double>())
 {
-    utils::check_sizes(x, y, weights);
-    x = utils::rank_scores(x, weights, "average");
-    y = utils::rank_scores(y, weights, "average");
-    return prho::prho(x, y, weights);
+    wdm_utils::check_sizes(x, y, weights);
+    x = rank_scores(x, weights, "average");
+    y = rank_scores(y, weights, "average");
+    return prho(x, y, weights);
 }
 
 }

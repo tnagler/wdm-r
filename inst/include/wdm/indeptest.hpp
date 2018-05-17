@@ -13,7 +13,7 @@
 #include <random>
 #include <limits>
 
-namespace indep_test {
+namespace wdm {
 
 //! calculates the (approximate) asymptotic distribution function of Hoeffding's
 //! B (as in Blum, Kiefer, and Rosenblatt) under the null hypothesis of
@@ -68,26 +68,27 @@ inline double calculate_test_stat(
 {
     // determine effective sample size
     double n_eff;
-    if (weights.size() == 0)
+    if (weights.size() == 0) {
         n_eff = static_cast<double>(x.size());
-    else
-        n_eff = utils::effective_sample_size(weights);
+    } else {
+        n_eff = wdm_utils::effective_sample_size(weights);
+    }
 
     // calculate test statistic
     double stat;
     if (method == "hoeffd") {
-        stat = hoeffd::hoeffd(x, y, weights) / 30.0 + 1.0 / (36.0 * n_eff);
+        stat = hoeffd(x, y, weights) / 30.0 + 1.0 / (36.0 * n_eff);
     } else if (method == "ktau") {
-        stat = ktau::ktau(x, y, weights);
+        stat = ktau(x, y, weights);
         stat *= std::sqrt(9 * n_eff / 4);
     } else if (method == "prho") {
-        stat = boost::math::atanh(prho::prho(x, y, weights));
+        stat = boost::math::atanh(prho(x, y, weights));
         stat *= std::sqrt(n_eff - 3);
     } else if (method == "srho") {
-        stat = boost::math::atanh(srho::srho(x, y, weights));
+        stat = boost::math::atanh(srho(x, y, weights));
         stat *= std::sqrt((n_eff - 3) / 1.06);
     }  else if (method == "bbeta") {
-        stat = bbeta::bbeta(x, y, weights);
+        stat = bbeta(x, y, weights);
         stat *= std::sqrt(n_eff);
     } else {
         throw std::runtime_error("method not impolemented.");
@@ -131,11 +132,11 @@ inline double indep_test(
         std::string method,
         std::vector<double> weights = std::vector<double>())
 {
-    utils::check_sizes(x, y, weights);
+    wdm_utils::check_sizes(x, y, weights);
     double stat = calculate_test_stat(x, y, method, weights);
     double n_eff = static_cast<double>(x.size());
     if (weights.size() > 0)
-        n_eff = utils::effective_sample_size(weights);
+        n_eff = wdm_utils::effective_sample_size(weights);
 
     return calculate_asymptotic_p_val(stat, method, n_eff);
 }

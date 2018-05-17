@@ -1,10 +1,7 @@
 #include <Rcpp.h>
-#include "ktau.hpp"
-#include "hoeffd.hpp"
-#include "prho.hpp"
-#include "srho.hpp"
-#include "bbeta.hpp"
-#include "indep_test.hpp"
+#include "wdm.hpp"
+
+using namespace wdm;
 
 //' @export
 // [[Rcpp::export]]
@@ -12,7 +9,7 @@ double ktau_cpp(const std::vector<double>& x,
                 const std::vector<double>& y,
                 const std::vector<double>& weights)
 {
-    return ktau::ktau(x, y, weights);
+    return ktau(x, y, weights);
 }
 
 
@@ -22,7 +19,7 @@ double hoeffd_cpp(const std::vector<double>& x,
                   const std::vector<double>& y,
                   const std::vector<double>& weights)
 {
-    return hoeffd::hoeffd(x, y, weights);
+    return hoeffd(x, y, weights);
 }
 
 //' @export
@@ -31,7 +28,7 @@ double prho_cpp(const std::vector<double>& x,
                 const std::vector<double>& y,
                 const std::vector<double>& weights)
 {
-    return prho::prho(x, y, weights);
+    return prho(x, y, weights);
 }
 
 //' @export
@@ -40,7 +37,7 @@ double srho_cpp(const std::vector<double>& x,
                 const std::vector<double>& y,
                 const std::vector<double>& weights)
 {
-    return srho::srho(x, y, weights);
+    return srho(x, y, weights);
 }
 
 
@@ -50,7 +47,7 @@ double bbeta_cpp(const std::vector<double>& x,
                  const std::vector<double>& y,
                  const std::vector<double>& weights)
 {
-    return bbeta::bbeta(x, y, weights);
+    return bbeta(x, y, weights);
 }
 
 
@@ -59,7 +56,7 @@ double bbeta_cpp(const std::vector<double>& x,
 std::vector<double> rank_scores_cpp(const std::vector<double>& x,
                                     const std::vector<double>& weights)
 {
-    return utils::rank_scores(x, weights);
+    return rank_scores(x, weights);
 }
 
 //' @export
@@ -68,7 +65,7 @@ std::vector<double> bivariate_rank_cpp(const std::vector<double>& x,
                                        const std::vector<double>& y,
                                        const std::vector<double>& weights)
 {
-    return hoeffd::bivariate_rank(x, y, weights);
+    return bivariate_rank(x, y, weights);
 }
 
 //' @export
@@ -78,5 +75,5 @@ double indep_test_cpp(const std::vector<double>& x,
                                  std::string method,
                                  const std::vector<double>& weights)
 {
-    return indep_test::indep_test(x, y, method, weights);
+    return indep_test(x, y, method, weights);
 }
