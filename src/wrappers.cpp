@@ -1,73 +1,14 @@
 #include <Rcpp.h>
 #include "wdm.hpp"
 
-using namespace wdm;
-
-// [[Rcpp::export]]
-double ktau_cpp(const std::vector<double>& x,
-                const std::vector<double>& y,
-                const std::vector<double>& weights)
-{
-    return ktau(x, y, weights);
-}
-
-
-// [[Rcpp::export]]
-double hoeffd_cpp(const std::vector<double>& x,
-                  const std::vector<double>& y,
-                  const std::vector<double>& weights)
-{
-    return hoeffd(x, y, weights);
-}
-
-// [[Rcpp::export]]
-double prho_cpp(const std::vector<double>& x,
-                const std::vector<double>& y,
-                const std::vector<double>& weights)
-{
-    return prho(x, y, weights);
-}
-
-// [[Rcpp::export]]
-double srho_cpp(const std::vector<double>& x,
-                const std::vector<double>& y,
-                const std::vector<double>& weights)
-{
-    return srho(x, y, weights);
-}
-
-
-// [[Rcpp::export]]
-double bbeta_cpp(const std::vector<double>& x,
-                 const std::vector<double>& y,
-                 const std::vector<double>& weights)
-{
-    return bbeta(x, y, weights);
-}
-
-
-// [[Rcpp::export]]
-std::vector<double> rank_scores_cpp(const std::vector<double>& x,
-                                    const std::vector<double>& weights)
-{
-    return rank_scores(x, weights);
-}
-
-// [[Rcpp::export]]
-std::vector<double> bivariate_rank_cpp(const std::vector<double>& x,
-                                       const std::vector<double>& y,
-                                       const std::vector<double>& weights)
-{
-    return bivariate_rank(x, y, weights);
-}
-
 // [[Rcpp::export]]
 double wdm_cpp(const std::vector<double>& x,
                const std::vector<double>& y,
                std::string method,
-               const std::vector<double>& weights)
+               const std::vector<double>& weights,
+               bool remove_missing)
 {
-    return wdm::wdm(x, y, method, weights);
+    return wdm::wdm(x, y, method, weights, remove_missing);
 }
 
 std::vector<double> convert_vec(const Rcpp::NumericVector& x)
@@ -103,13 +44,42 @@ Rcpp::NumericMatrix wdm_mat_cpp(const Rcpp::NumericMatrix& x,
     return ms;
 }
 
-
 // [[Rcpp::export]]
-double indeptest_cpp(const std::vector<double>& x,
-                     const std::vector<double>& y,
-                     std::string method,
-                     const std::vector<double>& weights)
+Rcpp::List indep_test_cpp(const std::vector<double>& x,
+                          const std::vector<double>& y,
+                          std::string method,
+                          const std::vector<double>& weights,
+                          bool remove_missing,
+                          std::string alternative)
 {
-    return indeptest(x, y, method, weights);
+    wdm::Indep_test test(x, y, method, weights, remove_missing, alternative);
+    return Rcpp::List::create(
+        Rcpp::Named("estimate") = test.estimate(),
+        Rcpp::Named("statistic") = test.statistic(),
+        Rcpp::Named("p_value") = test.p_value(),
+        Rcpp::Named("n_eff") = test.n_eff(),
+        Rcpp::Named("method") = method,
+        Rcpp::Named("alternative") = alternative
+    );
 }
 
+// [[Rcpp::export]]
+void test()
+{
+    // input vectors
+    std::vector<double> x{1, 3, 2, 5, 3, 2, 20, 15};
+    std::vector<double> y{2, 12, 4, 7, 8, 14, 17, 6};
+
+    // weights
+    std::vector<double> w{1, 1, 2, 2, 1, 0, 0.5, 0.3};
+
+    std::cout <<
+        "unweighted Kendall's tau: " << wdm::wdm(x, y, "kendall") << std::endl;
+    std::cout <<
+        "weighted Kendall's tau: " <<  wdm::wdm(x, y, "kendall", w) << std::endl;
+
+    // weighted independence test
+    wdm::Indep_test test(x, y, "kendall", w);
+    std::cout << "statistic: " << test.statistic() << std::endl;
+    std::cout << "p-value: " << test.p_value() << std::endl;
+}
