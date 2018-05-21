@@ -2,22 +2,12 @@
 % Please edit documentation in R/wdm-package.R
 \docType{package}
 \name{wdm-package}
-\alias{wdm}
 \alias{wdm-package}
-\title{wdm: Weighted Dependence Measures}
+\title{\packageTitle{wdm}}
 \description{
-Provides efficient implementations of weighted dependence measures.
+\packageDescription{wdm}
 }
-\seealso{
-Useful links:
-\itemize{
-  \item \url{https://github.com/tnagler/wdm}
-  \item Report bugs at \url{https://github.com/tnagler/wdm/issues}
+\details{
+The DESCRIPTION file:
+\packageDESCRIPTION{VineCopula}
 }
-
-}
-\author{
-\strong{Maintainer}: Thomas Nagler \email{mail@tnagler.com}
-
-}
-\keyword{internal}

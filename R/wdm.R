@@ -1,0 +1,80 @@
+#' Weighted Dependence Measures
+#'
+#' Computes a (possibly weighted) dependence measure between `x` and `y` if
+#' these are vectors. If `x` and `y` are matrices then the measure between the
+#' columns of `x` and the columns of `y` are computed.
+#'
+#' @param x a numeric vector, matrix or data frame.
+#' @param y `NULL` (default) or a vector, matrix or data frame with compatible
+#'   dimensions to x. The default is equivalent to `y = x`` (but more
+#'   efficient).
+#' @param method the dependence measure; see *Details* for possible values.
+#' @param weights an optional vector of weights for the observations.
+#' @param remove_missing if `TRUE`, all incomplete observations containing re
+#'   removed; otherwise throws an error if there are any.
+#'
+#' @details Available methods: - `"pearson"`: Pearson correlation -
+#' `"spearman"`: Spearman's \eqn{\rho} - `"kendall"`: Kendall's \eqn{\tau} -
+#' `"blomqvist"`: Blomqvist's \eqn{\beta} - `"hoeffding"`: Hoeffding's \eqn{D}
+#' Partial matching of method names is enabled.
+#'
+#' Spearman's \eqn{\rho} and Kendall's \eqn{\tau} are corrected for ties if
+#' there are any.
+#'
+#' @export
+#'
+#' @examples
+wdm <- function(x, y = NULL, method = "pearson", weights = NULL,
+                remove_missing = TRUE) {
+    ## preprocessing of arguments
+    method <- match.arg(method, allowed_methods)
+    if (is.null(weights))
+        weights <- numeric(0)
+    if (is.data.frame(y))
+        y <- as.matrix(y)
+    if (is.data.frame(x))
+        x <- as.matrix(x)
+    check_inputs(x, y, method, weights, remove_missing)
+
+    ## computations
+    if (is.null(y)) {
+        out <- wdm_mat_cpp(x, method, weights, remove_missing)
+        colnames(out) <- rownames(out) <- colnames(x)
+    } else if (NCOL(x) == 1) {
+        out <- wdm_cpp(x, y, method, weights, remove_missing)
+    } else {
+        out <- matrix(NA, ncol(x), ncol(y))
+        for (i in seq_len(ncol(x))) {
+            for (j in seq_len(ncol(y))) {
+                out[i, j] <- wdm(x[, i], y[, j], method, weights, remove_missing)
+            }
+        }
+        rownames(out) <- colnames(x)
+        colnames(out) <- colnames(y)
+    }
+
+    out[is.nan(out)] <- NA
+    out
+}
+
+allowed_methods <- c("pearson", "kendall", "spearman", "hoeffding", "blomqvist")
+
+check_inputs <- function(x, y, method, weights, remove_missing) {
+    if (!is.matrix(x) && is.null(y))
+        stop("supply both 'x' and 'y' or a matrix-like 'x'")
+    if (!(is.numeric(x) || is.logical(x)))
+        stop("'x' must be numeric")
+    if (!is.numeric(weights) | (NCOL(weights) != 1))
+        stop("weights must be a numeric vector")
+    stopifnot(is.atomic(x))
+    stopifnot(is.atomic(weights))
+    if (!is.null(y)) {
+        if (!(is.numeric(y) || is.logical(y)))
+            stop("'y' must be numeric")
+        stopifnot(is.atomic(y))
+        if ((NROW(x) != NROW(y)))
+            stop("'x' and 'y' must have the same number of rows")
+    }
+    if (!is.logical(remove_missing))
+        stop("remove_missing must be logical.")
+}

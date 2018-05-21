@@ -21,15 +21,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // wdm_mat_cpp
-Rcpp::NumericMatrix wdm_mat_cpp(const Rcpp::NumericMatrix& x, std::string method, const std::vector<double>& weights);
-RcppExport SEXP _wdm_wdm_mat_cpp(SEXP xSEXP, SEXP methodSEXP, SEXP weightsSEXP) {
+Rcpp::NumericMatrix wdm_mat_cpp(const Rcpp::NumericMatrix& x, std::string method, const std::vector<double>& weights, bool remove_missing);
+RcppExport SEXP _wdm_wdm_mat_cpp(SEXP xSEXP, SEXP methodSEXP, SEXP weightsSEXP, SEXP remove_missingSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Rcpp::NumericMatrix& >::type x(xSEXP);
     Rcpp::traits::input_parameter< std::string >::type method(methodSEXP);
     Rcpp::traits::input_parameter< const std::vector<double>& >::type weights(weightsSEXP);
-    rcpp_result_gen = Rcpp::wrap(wdm_mat_cpp(x, method, weights));
+    Rcpp::traits::input_parameter< bool >::type remove_missing(remove_missingSEXP);
+    rcpp_result_gen = Rcpp::wrap(wdm_mat_cpp(x, method, weights, remove_missing));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -61,7 +62,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_wdm_wdm_cpp", (DL_FUNC) &_wdm_wdm_cpp, 5},
-    {"_wdm_wdm_mat_cpp", (DL_FUNC) &_wdm_wdm_mat_cpp, 3},
+    {"_wdm_wdm_mat_cpp", (DL_FUNC) &_wdm_wdm_mat_cpp, 4},
     {"_wdm_indep_test_cpp", (DL_FUNC) &_wdm_indep_test_cpp, 6},
     {"_wdm_test", (DL_FUNC) &_wdm_test, 0},
     {NULL, NULL, 0}

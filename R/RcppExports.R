@@ -5,8 +5,8 @@ wdm_cpp <- function(x, y, method, weights, remove_missing) {
     .Call(`_wdm_wdm_cpp`, x, y, method, weights, remove_missing)
 }
 
-wdm_mat_cpp <- function(x, method, weights) {
-    .Call(`_wdm_wdm_mat_cpp`, x, method, weights)
+wdm_mat_cpp <- function(x, method, weights, remove_missing) {
+    .Call(`_wdm_wdm_mat_cpp`, x, method, weights, remove_missing)
 }
 
 indep_test_cpp <- function(x, y, method, weights, remove_missing, alternative) {

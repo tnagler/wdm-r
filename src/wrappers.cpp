@@ -19,7 +19,8 @@ std::vector<double> convert_vec(const Rcpp::NumericVector& x)
 // [[Rcpp::export]]
 Rcpp::NumericMatrix wdm_mat_cpp(const Rcpp::NumericMatrix& x,
                                 std::string method,
-                                const std::vector<double>& weights)
+                                const std::vector<double>& weights,
+                                bool remove_missing)
 {
     using namespace Rcpp;
     size_t d = x.ncol();
@@ -36,7 +37,8 @@ Rcpp::NumericMatrix wdm_mat_cpp(const Rcpp::NumericMatrix& x,
             ms(i, j) = wdm::wdm(convert_vec(x(_, i)),
                                 convert_vec(x(_, j)),
                                 method,
-                                weights);
+                                weights,
+                                remove_missing);
             ms(j, i) = ms(i, j);
         }
     }
