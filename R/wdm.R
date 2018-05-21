@@ -27,14 +27,14 @@
 wdm <- function(x, y = NULL, method = "pearson", weights = NULL,
                 remove_missing = TRUE) {
     ## preprocessing of arguments
-    method <- match.arg(method, allowed_methods)
     if (is.null(weights))
         weights <- numeric(0)
     if (is.data.frame(y))
         y <- as.matrix(y)
     if (is.data.frame(x))
         x <- as.matrix(x)
-    check_inputs(x, y, method, weights, remove_missing)
+    check_wdm_inputs(x, y, weights, remove_missing)
+    method <- match.arg(method, allowed_methods)
 
     ## computations
     if (is.null(y)) {
@@ -59,13 +59,13 @@ wdm <- function(x, y = NULL, method = "pearson", weights = NULL,
 
 allowed_methods <- c("pearson", "kendall", "spearman", "hoeffding", "blomqvist")
 
-check_inputs <- function(x, y, method, weights, remove_missing) {
+check_wdm_inputs <- function(x, y, weights, remove_missing) {
     if (!is.matrix(x) && is.null(y))
         stop("supply both 'x' and 'y' or a matrix-like 'x'")
     if (!(is.numeric(x) || is.logical(x)))
         stop("'x' must be numeric")
     if (!is.numeric(weights) | (NCOL(weights) != 1))
-        stop("weights must be a numeric vector")
+        stop("'weights' must be a numeric vector")
     stopifnot(is.atomic(x))
     stopifnot(is.atomic(weights))
     if (!is.null(y)) {
