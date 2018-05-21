@@ -16,3 +16,7 @@ RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/tnagler/wdm
 BugReports: https://github.com/tnagler/wdm/issues
+Suggests: 
+    testthat,
+    Hmisc,
+    copula
