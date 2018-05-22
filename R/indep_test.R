@@ -4,19 +4,23 @@
 #' these are vectors. If `x` and `y` are matrices then the measure between the
 #' columns of `x` and the columns of `y` are computed.
 #'
-#' @param x, y numeric vectors of data values. `x` and `y` must have the same
+#' @param x,y numeric vectors of data values. `x` and `y` must have the same
 #'   length.
 #' @param method the dependence measure; see *Details* for possible values.
 #' @param weights an optional vector of weights for the observations.
 #' @param remove_missing if `TRUE`, all incomplete observations containing re
 #'   removed; otherwise throws an error if there are any.
+#' @param alternative ndicates the alternative hypothesis and must be one of
+#'   `"two-sided"`, `"greater"` or `"less"`. You can specify just the initial
+#'   letter. `"greater"` corresponds to positive association, `"less"` to
+#'   negative association.
 #'
 #' @details Available methods: - `"pearson"`: Pearson correlation -
-#' `"spearman"`: Spearman's \eqn{\rho} - `"kendall"`: Kendall's \eqn{\tau} -
-#' `"blomqvist"`: Blomqvist's \eqn{\beta} - `"hoeffding"`: Hoeffding's \eqn{D}
-#' Partial matching of method names is enabled.
+#'   `"spearman"`: Spearman's \eqn{\rho} - `"kendall"`: Kendall's \eqn{\tau} -
+#'   `"blomqvist"`: Blomqvist's \eqn{\beta} - `"hoeffding"`: Hoeffding's \eqn{D}
+#'   Partial matching of method names is enabled.
 #'
-#' All methods besides `"hoeffding"` work with discrete variables.
+#'   All methods besides `"hoeffding"` work with discrete variables.
 #'
 #' @export
 #'

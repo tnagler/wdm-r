@@ -8,7 +8,7 @@ indep_test(x, y, method = "pearson", weights = NULL,
   remove_missing = TRUE, alternative = "two-sided")
 }
 \arguments{
-\item{x, }{y numeric vectors of data values. \code{x} and \code{y} must have the same
+\item{x, y}{numeric vectors of data values. \code{x} and \code{y} must have the same
 length.}
 
 \item{method}{the dependence measure; see \emph{Details} for possible values.}
@@ -17,6 +17,11 @@ length.}
 
 \item{remove_missing}{if \code{TRUE}, all incomplete observations containing re
 removed; otherwise throws an error if there are any.}
+
+\item{alternative}{ndicates the alternative hypothesis and must be one of
+\code{"two-sided"}, \code{"greater"} or \code{"less"}. You can specify just the initial
+letter. \code{"greater"} corresponds to positive association, \code{"less"} to
+negative association.}
 }
 \description{
 Computes a (possibly weighted) dependence measure between \code{x} and \code{y} if
