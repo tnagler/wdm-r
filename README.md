@@ -2,7 +2,7 @@
 wdm
 ===
 
-[![Travis build status](https://travis-ci.org/tnagler/wdm-r.svg?branch=master)](https://travis-ci.org/tnagler/wdm-r) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/tnagler/wdm-r?branch=master&svg=true)](https://ci.appveyor.com/project/tnagler/wdm-r)
+[![Travis build status](https://travis-ci.org/tnagler/wdm-r.svg?branch=master)](https://travis-ci.org/tnagler/wdm-r) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/tnagler/wdm-r?branch=master&svg=true)](https://ci.appveyor.com/project/tnagler/wdm-r) [![Coverage status](https://codecov.io/gh/tnagler/wdm-r/branch/master/graph/badge.svg)](https://codecov.io/github/tnagler/wdm-r?branch=master)
 
 R interface to the [wdm](https://github.com/tnagler/wdm) C++ library, which provides efficient implementations of weighted dependence measures and related independence tests:
 
@@ -38,9 +38,9 @@ x <- rnorm(100)
 y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
 w <- runif(100)
 wdm(x, y, method = "kendall")               # unweighted
-#> [1] 0.08563521
+#> [1] -0.07682849
 wdm(x, y, method = "kendall", weights = w)  # weighted
-#> [1] 0.1048728
+#> [1] -0.08959182
 ```
 
 #### dependence in a matrix
@@ -48,15 +48,15 @@ wdm(x, y, method = "kendall", weights = w)  # weighted
 ``` r
 x <- matrix(rnorm(100 * 3), 100, 3)
 wdm(x, method = "spearman")               # unweighted
-#>            [,1]       [,2]       [,3]
-#> [1,] 1.00000000 0.04116412 0.04162016
-#> [2,] 0.04116412 1.00000000 0.06217822
-#> [3,] 0.04162016 0.06217822 1.00000000
+#>             [,1]        [,2]        [,3]
+#> [1,]  1.00000000 -0.07431143 -0.03681968
+#> [2,] -0.07431143  1.00000000 -0.08433243
+#> [3,] -0.03681968 -0.08433243  1.00000000
 wdm(x, method = "spearman", weights = w)  # weighted
 #>             [,1]        [,2]        [,3]
-#> [1,]  1.00000000  0.02223874 -0.05844855
-#> [2,]  0.02223874  1.00000000 -0.04757413
-#> [3,] -0.05844855 -0.04757413  1.00000000
+#> [1,]  1.00000000 -0.26920202 -0.06345475
+#> [2,] -0.26920202  1.00000000 -0.06665639
+#> [3,] -0.06345475 -0.06665639  1.00000000
 ```
 
 #### independence tests
@@ -67,8 +67,8 @@ y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
 w <- runif(100)
 indep_test(x, y, method = "kendall")               # unweighted
 #>    estimate statistic   p_value n_eff  method alternative
-#> 1 -0.102849 -1.199541 0.2303178   100 kendall   two-sided
+#> 1 0.0366728 0.4311852 0.6663337   100 kendall   two-sided
 indep_test(x, y, method = "kendall", weights = w)  # weighted
-#>     estimate statistic    p_value    n_eff  method alternative
-#> 1 -0.1700221 -1.701925 0.08876937 76.51569 kendall   two-sided
+#>     estimate statistic   p_value    n_eff  method alternative
+#> 1 0.02995828 0.3055508 0.7599467 74.16138 kendall   two-sided
 ```

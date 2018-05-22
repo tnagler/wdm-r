@@ -64,31 +64,3 @@ Rcpp::List indep_test_cpp(const std::vector<double>& x,
         Rcpp::Named("alternative") = alternative
     );
 }
-
-// [[Rcpp::export]]
-double count_ties_v(const std::vector<double>& x,
-                        const std::vector<double>& weights)
-{
-    return wdm::utils::count_ties_v(x, weights);
-}
-
-// [[Rcpp::export]]
-void test_example()
-{
-    // input vectors
-    std::vector<double> x{1, 3, 2, 5, 3, 2, 20, 15};
-    std::vector<double> y{2, 12, 4, 7, 8, 14, 17, 6};
-
-    // weights
-    std::vector<double> w{1, 1, 2, 2, 1, 0, 0.5, 0.3};
-
-    std::cout <<
-        "unweighted Kendall's tau: " << wdm::wdm(x, y, "kendall") << std::endl;
-    std::cout <<
-        "weighted Kendall's tau: " <<  wdm::wdm(x, y, "kendall", w) << std::endl;
-
-    // weighted independence test
-    wdm::Indep_test test(x, y, "kendall", w);
-    std::cout << "statistic: " << test.statistic() << std::endl;
-    std::cout << "p-value: " << test.p_value() << std::endl;
-}
