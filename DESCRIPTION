@@ -1,6 +1,6 @@
 Package: wdm
 Title: Weighted Dependence Measures
-Version: 0.1.0.
+Version: 0.1.0
 Authors@R: person("Thomas", "Nagler", email = "mail@tnagler.com", role = c("aut", "cre"))
 Description: Provides efficient implementations of weighted dependence measures
   and related independence tests.
@@ -20,4 +20,5 @@ BugReports: https://github.com/tnagler/wdm/issues
 Suggests: 
     testthat,
     Hmisc,
-    copula
+    copula,
+    covr

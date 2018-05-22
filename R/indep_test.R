@@ -16,7 +16,7 @@
 #' `"blomqvist"`: Blomqvist's \eqn{\beta} - `"hoeffding"`: Hoeffding's \eqn{D}
 #' Partial matching of method names is enabled.
 #'
-#' All methods besides `"hoeffding` work with discrete variables.
+#' All methods besides `"hoeffding"` work with discrete variables.
 #'
 #' @export
 #'

@@ -29,7 +29,7 @@ Available methods: - \code{"pearson"}: Pearson correlation -
 \code{"blomqvist"}: Blomqvist's \eqn{\beta} - \code{"hoeffding"}: Hoeffding's \eqn{D}
 Partial matching of method names is enabled.
 
-All methods besides \code{"hoeffding} work with discrete variables.
+All methods besides \code{"hoeffding"} work with discrete variables.
 }
 \examples{
 x <- rnorm(100)
