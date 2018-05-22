@@ -34,8 +34,9 @@ test_that("catches wrong arguments", {
     # x and y
     expect_error(wdm(x[, 1]))
     expect_error(wdm(as.character(x)))
-    expect_error(wdm(list(1, 2, 3)))
-    expect_error(wdm(x, list(1, 2, 3)))
+    expect_error(wdm(list(1)))
+    expect_error(wdm(x, list(1)))
+    expect_error(wdm(x[, 1], x[1:5, 2]))
     expect_silent(wdm(x, cbind(x, x)))
 
     # method

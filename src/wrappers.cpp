@@ -66,7 +66,14 @@ Rcpp::List indep_test_cpp(const std::vector<double>& x,
 }
 
 // [[Rcpp::export]]
-void test()
+double count_ties_v(const std::vector<double>& x,
+                        const std::vector<double>& weights)
+{
+    return wdm::utils::count_ties_v(x, weights);
+}
+
+// [[Rcpp::export]]
+void test_example()
 {
     // input vectors
     std::vector<double> x{1, 3, 2, 5, 3, 2, 20, 15};

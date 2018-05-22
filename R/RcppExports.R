@@ -13,7 +13,11 @@ indep_test_cpp <- function(x, y, method, weights, remove_missing, alternative) {
     .Call(`_wdm_indep_test_cpp`, x, y, method, weights, remove_missing, alternative)
 }
 
-test <- function() {
-    invisible(.Call(`_wdm_test`))
+count_ties_v <- function(x, weights) {
+    .Call(`_wdm_count_ties_v`, x, weights)
+}
+
+test_example <- function() {
+    invisible(.Call(`_wdm_test_example`))
 }
 

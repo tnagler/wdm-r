@@ -50,12 +50,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// test
-void test();
-RcppExport SEXP _wdm_test() {
+// count_ties_v
+double count_ties_v(const std::vector<double>& x, const std::vector<double>& weights);
+RcppExport SEXP _wdm_count_ties_v(SEXP xSEXP, SEXP weightsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::vector<double>& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const std::vector<double>& >::type weights(weightsSEXP);
+    rcpp_result_gen = Rcpp::wrap(count_ties_v(x, weights));
+    return rcpp_result_gen;
+END_RCPP
+}
+// test_example
+void test_example();
+RcppExport SEXP _wdm_test_example() {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
-    test();
+    test_example();
     return R_NilValue;
 END_RCPP
 }
@@ -64,7 +76,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_wdm_wdm_cpp", (DL_FUNC) &_wdm_wdm_cpp, 5},
     {"_wdm_wdm_mat_cpp", (DL_FUNC) &_wdm_wdm_mat_cpp, 4},
     {"_wdm_indep_test_cpp", (DL_FUNC) &_wdm_indep_test_cpp, 6},
-    {"_wdm_test", (DL_FUNC) &_wdm_test, 0},
+    {"_wdm_count_ties_v", (DL_FUNC) &_wdm_count_ties_v, 2},
+    {"_wdm_test_example", (DL_FUNC) &_wdm_test_example, 0},
     {NULL, NULL, 0}
 };
 
