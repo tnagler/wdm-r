@@ -29,6 +29,14 @@ Available methods: - \code{"pearson"}: Pearson correlation -
 \code{"blomqvist"}: Blomqvist's \eqn{\beta} - \code{"hoeffding"}: Hoeffding's \eqn{D}
 Partial matching of method names is enabled.
 
-Spearman's \eqn{\rho} and Kendall's \eqn{\tau} are corrected for ties if
-there are any.
+All methods besides \code{"hoeffding} work with discrete variables.
+}
+\examples{
+x <- rnorm(100)
+y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
+w <- runif(100)
+
+indep_test(x, y, method = "kendall")               # unweighted
+indep_test(x, y, method = "kendall", weights = w)  # weighted
+
 }

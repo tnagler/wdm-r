@@ -21,6 +21,13 @@
 #' @export
 #'
 #' @examples
+#' x <- rnorm(100)
+#' y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
+#' w <- runif(100)
+#'
+#' indep_test(x, y, method = "kendall")               # unweighted
+#' indep_test(x, y, method = "kendall", weights = w)  # weighted
+#'
 indep_test <- function(x, y, method = "pearson", weights = NULL,
                        remove_missing = TRUE, alternative = "two-sided") {
     if (is.null(weights))
