@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 .git
 LICENSE.md
+^README\.Rmd$
