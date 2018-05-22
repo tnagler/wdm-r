@@ -12,7 +12,7 @@ R interface to the [wdm](https://github.com/tnagler/wdm) C++ library, which prov
 -   Blomqvist's beta
 -   Hoeffding's D
 
-All measures are computed in *O(n* log *n)* time, where *n* is the number of observations.
+All measures are computed in *O(n* log *n)* time, where *n* is the number of observations. For a detailed description of the functionality, see the [API documentation](https://tnagler.github.io/wdm-r/).
 
 ### Installation
 
@@ -51,9 +51,9 @@ x <- rnorm(100)
 y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
 w <- runif(100)
 wdm(x, y, method = "kendall")               # unweighted
-#> [1] -0.08173624
+#> [1] 0.01640672
 wdm(x, y, method = "kendall", weights = w)  # weighted
-#> [1] -0.1515681
+#> [1] 0.1127467
 ```
 
 ##### Dependence in a matrix
@@ -61,15 +61,15 @@ wdm(x, y, method = "kendall", weights = w)  # weighted
 ``` r
 x <- matrix(rnorm(100 * 3), 100, 3)
 wdm(x, method = "spearman")               # unweighted
-#>              [,1]        [,2]         [,3]
-#> [1,]  1.000000000  0.08891689 -0.001368137
-#> [2,]  0.088916892  1.00000000 -0.041824182
-#> [3,] -0.001368137 -0.04182418  1.000000000
+#>             [,1]        [,2]        [,3]
+#> [1,]  1.00000000 -0.12354035 -0.05741374
+#> [2,] -0.12354035  1.00000000  0.05442544
+#> [3,] -0.05741374  0.05442544  1.00000000
 wdm(x, method = "spearman", weights = w)  # weighted
 #>             [,1]       [,2]        [,3]
-#> [1,] 1.000000000 0.27541167 0.002842756
-#> [2,] 0.275411671 1.00000000 0.097145240
-#> [3,] 0.002842756 0.09714524 1.000000000
+#> [1,]  1.00000000 -0.1686591 -0.02277923
+#> [2,] -0.16865905  1.0000000  0.12364050
+#> [3,] -0.02277923  0.1236405  1.00000000
 ```
 
 ##### Independence test
@@ -79,9 +79,9 @@ x <- rnorm(100)
 y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
 w <- runif(100)
 indep_test(x, y, method = "kendall")               # unweighted
-#>     estimate statistic   p_value n_eff  method alternative
-#> 1 -0.1112516 -1.296068 0.1949519   100 kendall   two-sided
+#>      estimate  statistic   p_value n_eff  method alternative
+#> 1 -0.02077138 -0.2417248 0.8089934   100 kendall   two-sided
 indep_test(x, y, method = "kendall", weights = w)  # weighted
 #>      estimate  statistic   p_value    n_eff  method alternative
-#> 1 -0.08731408 -0.8665672 0.3861792 75.38177 kendall   two-sided
+#> 1 -0.04499806 -0.4627041 0.6435765 76.72921 kendall   two-sided
 ```

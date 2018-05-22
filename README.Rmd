@@ -27,7 +27,8 @@ independence tests:
    * Hoeffding's D
  
 All measures are computed in *O(n* log *n)* time, where *n* is the number of 
-observations.
+observations. For a detailed description of the functionality, see the 
+[API documentation](https://tnagler.github.io/wdm-r/).
 
 
 ### Installation
