@@ -36,8 +36,15 @@ You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("tnagler/wdm-r")
+install_submodule_git <- function(x, ...) {
+  install_dir <- tempfile()
+  system(paste("git clone --recursive", shQuote(x), shQuote(install_dir)))
+  devtools::install(install_dir, ...)
+}
+install_submodule_git("https://github.com/tnagler/wdm-r")
 ```
+
+This assumes you have [git](https://git-scm.com) client installed locally.
 
 ### Cloning
 

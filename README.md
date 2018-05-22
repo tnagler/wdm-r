@@ -20,8 +20,15 @@ You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("tnagler/wdm-r")
+install_submodule_git <- function(x, ...) {
+  install_dir <- tempfile()
+  system(paste("git clone --recursive", shQuote(x), shQuote(install_dir)))
+  devtools::install(install_dir, ...)
+}
+install_submodule_git("https://github.com/tnagler/wdm-r")
 ```
+
+This assumes you have [git](https://git-scm.com) client installed locally.
 
 ### Cloning
 
@@ -44,9 +51,9 @@ x <- rnorm(100)
 y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
 w <- runif(100)
 wdm(x, y, method = "kendall")               # unweighted
-#> [1] 0.01850718
+#> [1] -0.08173624
 wdm(x, y, method = "kendall", weights = w)  # weighted
-#> [1] 0.03520163
+#> [1] -0.1515681
 ```
 
 ##### Dependence in a matrix
@@ -54,15 +61,15 @@ wdm(x, y, method = "kendall", weights = w)  # weighted
 ``` r
 x <- matrix(rnorm(100 * 3), 100, 3)
 wdm(x, method = "spearman")               # unweighted
-#>             [,1]        [,2]        [,3]
-#> [1,]  1.00000000 -0.09494149 -0.03687969
-#> [2,] -0.09494149  1.00000000  0.05993399
-#> [3,] -0.03687969  0.05993399  1.00000000
+#>              [,1]        [,2]         [,3]
+#> [1,]  1.000000000  0.08891689 -0.001368137
+#> [2,]  0.088916892  1.00000000 -0.041824182
+#> [3,] -0.001368137 -0.04182418  1.000000000
 wdm(x, method = "spearman", weights = w)  # weighted
-#>            [,1]        [,2]        [,3]
-#> [1,]  1.0000000 -0.13994018 -0.13932619
-#> [2,] -0.1399402  1.00000000  0.04920561
-#> [3,] -0.1393262  0.04920561  1.00000000
+#>             [,1]       [,2]        [,3]
+#> [1,] 1.000000000 0.27541167 0.002842756
+#> [2,] 0.275411671 1.00000000 0.097145240
+#> [3,] 0.002842756 0.09714524 1.000000000
 ```
 
 ##### Independence test
@@ -72,9 +79,9 @@ x <- rnorm(100)
 y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
 w <- runif(100)
 indep_test(x, y, method = "kendall")               # unweighted
-#>      estimate  statistic   p_value n_eff  method alternative
-#> 1 -0.01464269 -0.1711457 0.8641092   100 kendall   two-sided
+#>     estimate statistic   p_value n_eff  method alternative
+#> 1 -0.1112516 -1.296068 0.1949519   100 kendall   two-sided
 indep_test(x, y, method = "kendall", weights = w)  # weighted
 #>      estimate  statistic   p_value    n_eff  method alternative
-#> 1 -0.01042896 -0.1039409 0.9172163 74.20691 kendall   two-sided
+#> 1 -0.08731408 -0.8665672 0.3861792 75.38177 kendall   two-sided
 ```
