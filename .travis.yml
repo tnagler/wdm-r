@@ -1,8 +1,18 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
-sudo: false
+sudo: required
 cache: packages
+
+apt_packages:
+  - libgsl0-dev
+  - libgsl0ldbl
+  - libcurl4-openssl-dev
+  - libxml2-dev
+  - libcgal-dev
+
+repos:
+  CRAN: http://cran.rstudio.com
 
 after_success:
   - Rscript -e 'covr::codecov()'
