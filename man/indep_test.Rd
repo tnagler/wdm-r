@@ -18,7 +18,7 @@ length.}
 \item{remove_missing}{if \code{TRUE}, all incomplete observations containing re
 removed; otherwise throws an error if there are any.}
 
-\item{alternative}{ndicates the alternative hypothesis and must be one of
+\item{alternative}{indicates the alternative hypothesis and must be one of
 \code{"two-sided"}, \code{"greater"} or \code{"less"}. You can specify just the initial
 letter. \code{"greater"} corresponds to positive association, \code{"less"} to
 negative association.}
