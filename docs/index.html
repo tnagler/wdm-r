@@ -45,10 +45,13 @@
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/tnagler/wdm">
+  <a href="https://github.com/tnagler/wdm-r">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -111,24 +114,24 @@ install_submodule_git &lt;-<span class="st"> </span><span class="cf">function</s
 y &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="dv">100</span>, <span class="dv">1</span>)  <span class="co"># all but Hoeffding's D can handle ties</span>
 w &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>)
 <span class="kw"><a href="reference/wdm.html">wdm</a></span>(x, y, <span class="dt">method =</span> <span class="st">"kendall"</span>)               <span class="co"># unweighted</span>
-<span class="co">#&gt; [1] -0.1328478</span>
+<span class="co">#&gt; [1] 0.07949745</span>
 <span class="kw"><a href="reference/wdm.html">wdm</a></span>(x, y, <span class="dt">method =</span> <span class="st">"kendall"</span>, <span class="dt">weights =</span> w)  <span class="co"># weighted</span>
-<span class="co">#&gt; [1] -0.1507165</span></code></pre></div>
+<span class="co">#&gt; [1] 0.107379</span></code></pre></div>
 </div>
 <div id="dependence-in-a-matrix" class="section level5">
 <h5 class="hasAnchor">
 <a href="#dependence-in-a-matrix" class="anchor"></a>Dependence in a matrix</h5>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span>), <span class="dv">100</span>, <span class="dv">3</span>)
 <span class="kw"><a href="reference/wdm.html">wdm</a></span>(x, <span class="dt">method =</span> <span class="st">"spearman"</span>)               <span class="co"># unweighted</span>
-<span class="co">#&gt;             [,1]        [,2]        [,3]</span>
-<span class="co">#&gt; [1,]  1.00000000  0.05176118 -0.00189619</span>
-<span class="co">#&gt; [2,]  0.05176118  1.00000000 -0.01292529</span>
-<span class="co">#&gt; [3,] -0.00189619 -0.01292529  1.00000000</span>
+<span class="co">#&gt;            [,1]        [,2]        [,3]</span>
+<span class="co">#&gt; [1,] 1.00000000  0.07828383  0.02081008</span>
+<span class="co">#&gt; [2,] 0.07828383  1.00000000 -0.03065107</span>
+<span class="co">#&gt; [3,] 0.02081008 -0.03065107  1.00000000</span>
 <span class="kw"><a href="reference/wdm.html">wdm</a></span>(x, <span class="dt">method =</span> <span class="st">"spearman"</span>, <span class="dt">weights =</span> w)  <span class="co"># weighted</span>
-<span class="co">#&gt;            [,1]       [,2]       [,3]</span>
-<span class="co">#&gt; [1,] 1.00000000 0.08867563 0.09029990</span>
-<span class="co">#&gt; [2,] 0.08867563 1.00000000 0.04634682</span>
-<span class="co">#&gt; [3,] 0.09029990 0.04634682 1.00000000</span></code></pre></div>
+<span class="co">#&gt;            [,1]        [,2]        [,3]</span>
+<span class="co">#&gt; [1,] 1.00000000  0.08199909  0.09663465</span>
+<span class="co">#&gt; [2,] 0.08199909  1.00000000 -0.12337073</span>
+<span class="co">#&gt; [3,] 0.09663465 -0.12337073  1.00000000</span></code></pre></div>
 </div>
 <div id="independence-test" class="section level5">
 <h5 class="hasAnchor">
@@ -138,10 +141,10 @@ y &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="dv">1
 w &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100</span>)
 <span class="kw"><a href="reference/indep_test.html">indep_test</a></span>(x, y, <span class="dt">method =</span> <span class="st">"kendall"</span>)               <span class="co"># unweighted</span>
 <span class="co">#&gt;      estimate  statistic   p_value n_eff  method alternative</span>
-<span class="co">#&gt; 1 -0.08213102 -0.9403191 0.3470539   100 kendall   two-sided</span>
+<span class="co">#&gt; 1 -0.01167977 -0.1365143 0.8914147   100 kendall   two-sided</span>
 <span class="kw"><a href="reference/indep_test.html">indep_test</a></span>(x, y, <span class="dt">method =</span> <span class="st">"kendall"</span>, <span class="dt">weights =</span> w)  <span class="co"># weighted</span>
-<span class="co">#&gt;     estimate  statistic   p_value   n_eff  method alternative</span>
-<span class="co">#&gt; 1 -0.1034446 -0.9572094 0.3384616 71.9678 kendall   two-sided</span></code></pre></div>
+<span class="co">#&gt;      estimate  statistic  p_value    n_eff  method alternative</span>
+<span class="co">#&gt; 1 -0.07553377 -0.7749385 0.438376 79.19801 kendall   two-sided</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -151,9 +154,9 @@ w &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/tnagler/wdm">https://​github.com/​tnagler/​wdm</a>
+<li>Browse source code at <br><a href="https://github.com/tnagler/wdm-r">https://​github.com/​tnagler/​wdm-r</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/tnagler/wdm/issues">https://​github.com/​tnagler/​wdm/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/tnagler/wdm-r/issues">https://​github.com/​tnagler/​wdm-r/​issues</a>
 </li>
 </ul>
 </div>
@@ -177,6 +180,7 @@ w &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">1
 <li><a href="https://travis-ci.org/tnagler/wdm-r"><img src="https://travis-ci.org/tnagler/wdm-r.svg?branch=master" alt="Travis build status"></a></li>
 <li><a href="https://ci.appveyor.com/project/tnagler/wdm-r"><img src="https://ci.appveyor.com/api/projects/status/github/tnagler/wdm-r?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
 <li><a href="https://codecov.io/github/tnagler/wdm-r?branch=master"><img src="https://codecov.io/gh/tnagler/wdm-r/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="https://cran.r-project.org/package=wdm"><img src="https://www.r-pkg.org/badges/version/wdm" alt="CRAN status"></a></li>
 </ul>
 </div>
 </div>

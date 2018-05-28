@@ -15,8 +15,8 @@ Imports:
     Rcpp
 RoxygenNote: 6.0.1
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/tnagler/wdm
-BugReports: https://github.com/tnagler/wdm/issues
+URL: https://github.com/tnagler/wdm-r
+BugReports: https://github.com/tnagler/wdm-r/issues
 Suggests: 
     testthat,
     Hmisc,

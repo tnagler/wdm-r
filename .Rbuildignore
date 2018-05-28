@@ -3,6 +3,10 @@
 .git
 LICENSE.md
 ^README\.Rmd$
-^appveyor\.yml$
-^\.travis\.yml$
+appveyor\.yml
+.travis\.yml
 ^codecov\.yml$
+inst/example
+docs
+inst/README.md
+^cran-comments\.md$
