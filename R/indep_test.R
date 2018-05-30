@@ -10,7 +10,7 @@
 #' @param weights an optional vector of weights for the observations.
 #' @param remove_missing if `TRUE`, all incomplete observations containing re
 #'   removed; otherwise throws an error if there are any.
-#' @param alternative ndicates the alternative hypothesis and must be one of
+#' @param alternative indicates the alternative hypothesis and must be one of
 #'   `"two-sided"`, `"greater"` or `"less"`. You can specify just the initial
 #'   letter. `"greater"` corresponds to positive association, `"less"` to
 #'   negative association.

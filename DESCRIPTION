@@ -3,14 +3,16 @@ Title: Weighted Dependence Measures
 Version: 0.1.0
 Authors@R: person("Thomas", "Nagler", email = "mail@tnagler.com", role = c("aut", "cre"))
 Description: Provides efficient implementations of weighted dependence measures
-  and related independence tests.
+  and related asymptotic tests for independence. Implemented measures are
+  the Pearson correlation, Spearman's rho, Kendall's tau, Blomqvist's beta, and
+  Hoeffding's D; see, e.g., Nelsen (2006) <doi:10.1007/0-387-28678-0> and
+  Hollander et al. (2015, ISBN:9780470387375).
 Depends: R (>= 3.2.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 LinkingTo:
-    Rcpp,
-    BH
+    Rcpp
 Imports:
     Rcpp
 RoxygenNote: 6.0.1

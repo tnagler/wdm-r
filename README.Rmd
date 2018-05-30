@@ -28,13 +28,21 @@ independence tests:
    * Hoeffding's D
  
 All measures are computed in *O(n* log *n)* time, where *n* is the number of 
-observations. For a detailed description of the functionality, see the 
+observations. 
+
+For a detailed description of the functionality, see the 
 [API documentation](https://tnagler.github.io/wdm-r/).
 
 
 ### Installation
 
-You can install the development version from [GitHub](https://github.com/) with:
+- the stable release from CRAN:
+
+``` r
+install.packages("wdm")
+```
+
+- the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -45,8 +53,6 @@ install_submodule_git <- function(x, ...) {
 }
 install_submodule_git("https://github.com/tnagler/wdm-r")
 ```
-
-This assumes you have [git](https://git-scm.com) client installed locally.
 
 ### Cloning
 

@@ -1,3 +1,4 @@
+#define BOOST_MATH_PROMOTE_DOUBLE_POLICY false
 #include <Rcpp.h>
 #include "wdm.hpp"
 
