@@ -11,3 +11,4 @@ docs
 inst/README.md
 ^cran-comments\.md$
 ^CRAN-RELEASE$
+^revdep$
