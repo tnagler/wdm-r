@@ -15,8 +15,9 @@ length.}
 
 \item{weights}{an optional vector of weights for the observations.}
 
-\item{remove_missing}{if \code{TRUE}, all incomplete observations containing re
-removed; otherwise throws an error if there are any.}
+\item{remove_missing}{if \code{TRUE}, all (pairswise) incomplete observations are
+removed; if \code{FALSE}, the function throws an error if there are incomplete
+observations.}
 
 \item{alternative}{indicates the alternative hypothesis and must be one of
 \code{"two-sided"}, \code{"greater"} or \code{"less"}. You can specify just the initial
@@ -29,12 +30,17 @@ these are vectors. If \code{x} and \code{y} are matrices then the measure betwee
 columns of \code{x} and the columns of \code{y} are computed.
 }
 \details{
-Available methods: - \code{"pearson"}: Pearson correlation -
-\code{"spearman"}: Spearman's \eqn{\rho} - \code{"kendall"}: Kendall's \eqn{\tau} -
-\code{"blomqvist"}: Blomqvist's \eqn{\beta} - \code{"hoeffding"}: Hoeffding's \eqn{D}
-Partial matching of method names is enabled.
+Available methods:
+\itemize{
+\item \code{"pearson"}: Pearson correlation
+\item \code{"spearman"}: Spearman's \eqn{\rho}
+\item \code{"kendall"}: Kendall's \eqn{\tau}
+\item \code{"blomqvist"}: Blomqvist's \eqn{\beta}
+\item \code{"hoeffding"}: Hoeffding's \eqn{D}
+}
 
-All methods besides \code{"hoeffding"} work with discrete variables.
+Partial matching of method names is enabled.
+All methods except \code{"hoeffding"} work with discrete variables.
 }
 \examples{
 x <- rnorm(100)
