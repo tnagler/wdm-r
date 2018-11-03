@@ -10,12 +10,16 @@
 #'   efficient).
 #' @param method the dependence measure; see *Details* for possible values.
 #' @param weights an optional vector of weights for the observations.
-#' @param remove_missing if `TRUE`, all incomplete observations containing re
-#'   removed; otherwise throws an error if there are any.
+#' @param remove_missing if `TRUE`, all (pairswise) incomplete observations are
+#'   removed; if `FALSE`, the function throws an error if there are incomplete
+#'   observations.
 #'
-#' @details Available methods: - `"pearson"`: Pearson correlation -
-#' `"spearman"`: Spearman's \eqn{\rho} - `"kendall"`: Kendall's \eqn{\tau} -
-#' `"blomqvist"`: Blomqvist's \eqn{\beta} - `"hoeffding"`: Hoeffding's \eqn{D}
+#' @details Available methods:
+#' - `"pearson"`: Pearson correlation
+#' - `"spearman"`: Spearman's \eqn{\rho}
+#' - `"kendall"`: Kendall's \eqn{\tau}
+#' - `"blomqvist"`: Blomqvist's \eqn{\beta}
+#' - `"hoeffding"`: Hoeffding's \eqn{D}
 #' Partial matching of method names is enabled.
 #'
 #' Spearman's \eqn{\rho} and Kendall's \eqn{\tau} are corrected for ties if

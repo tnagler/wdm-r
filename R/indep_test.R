@@ -8,19 +8,23 @@
 #'   length.
 #' @param method the dependence measure; see *Details* for possible values.
 #' @param weights an optional vector of weights for the observations.
-#' @param remove_missing if `TRUE`, all incomplete observations containing re
-#'   removed; otherwise throws an error if there are any.
+#' @param remove_missing if `TRUE`, all (pairswise) incomplete observations are
+#'   removed; if `FALSE`, the function throws an error if there are incomplete
+#'   observations.
 #' @param alternative indicates the alternative hypothesis and must be one of
 #'   `"two-sided"`, `"greater"` or `"less"`. You can specify just the initial
 #'   letter. `"greater"` corresponds to positive association, `"less"` to
 #'   negative association.
 #'
-#' @details Available methods: - `"pearson"`: Pearson correlation -
-#'   `"spearman"`: Spearman's \eqn{\rho} - `"kendall"`: Kendall's \eqn{\tau} -
-#'   `"blomqvist"`: Blomqvist's \eqn{\beta} - `"hoeffding"`: Hoeffding's \eqn{D}
-#'   Partial matching of method names is enabled.
+#' @details Available methods:
+#' - `"pearson"`: Pearson correlation
+#' - `"spearman"`: Spearman's \eqn{\rho}
+#' - `"kendall"`: Kendall's \eqn{\tau}
+#' - `"blomqvist"`: Blomqvist's \eqn{\beta}
+#' - `"hoeffding"`: Hoeffding's \eqn{D}
 #'
-#'   All methods besides `"hoeffding"` work with discrete variables.
+#' Partial matching of method names is enabled.
+#' All methods except `"hoeffding"` work with discrete variables.
 #'
 #' @export
 #'
