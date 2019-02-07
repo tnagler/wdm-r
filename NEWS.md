@@ -1,3 +1,8 @@
+# wdm 0.2.0
+
+* use more intuitive formula for Pearson's rho that is linear in weights.
+
+
 # wdm 0.1.2
 
 * fix typos and formatting issues in manual pages.
