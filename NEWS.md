@@ -1,3 +1,8 @@
+# wdm 0.2.1
+
+* keep debugging symbols after package install (following a request by Prof. Ripley).
+
+
 # wdm 0.2.0
 
 * use more intuitive formula for Pearson's rho that is linear in weights.
