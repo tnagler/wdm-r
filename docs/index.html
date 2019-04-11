@@ -34,7 +34,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">wdm</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.1</span>
       </span>
     </div>
 
@@ -124,24 +124,24 @@ install_submodule_git &lt;-<span class="st"> </span><span class="cf">function</s
 y &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(<span class="dv">100</span>, <span class="dv">1</span>)  <span class="co"># all but Hoeffding's D can handle ties</span>
 w &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dv">100</span>)
 <span class="kw"><a href="reference/wdm.html">wdm</a></span>(x, y, <span class="dt">method =</span> <span class="st">"kendall"</span>)               <span class="co"># unweighted</span>
-<span class="co">#&gt; [1] -0.08279411</span>
+<span class="co">#&gt; [1] 0.03673702</span>
 <span class="kw"><a href="reference/wdm.html">wdm</a></span>(x, y, <span class="dt">method =</span> <span class="st">"kendall"</span>, <span class="dt">weights =</span> w)  <span class="co"># weighted</span>
-<span class="co">#&gt; [1] -0.09146306</span></code></pre></div>
+<span class="co">#&gt; [1] 0.04754892</span></code></pre></div>
 </div>
 <div id="dependence-in-a-matrix" class="section level5">
 <h5 class="hasAnchor">
 <a href="#dependence-in-a-matrix" class="anchor"></a>Dependence in a matrix</h5>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="dv">3</span>), <span class="dv">100</span>, <span class="dv">3</span>)
 <span class="kw"><a href="reference/wdm.html">wdm</a></span>(x, <span class="dt">method =</span> <span class="st">"spearman"</span>)               <span class="co"># unweighted</span>
-<span class="co">#&gt;             [,1]        [,2]       [,3]</span>
-<span class="co">#&gt; [1,]  1.00000000 -0.05242124 0.09077708</span>
-<span class="co">#&gt; [2,] -0.05242124  1.00000000 0.01910591</span>
-<span class="co">#&gt; [3,]  0.09077708  0.01910591 1.00000000</span>
+<span class="co">#&gt;             [,1]        [,2]        [,3]</span>
+<span class="co">#&gt; [1,]  1.00000000 -0.05848185 -0.01894989</span>
+<span class="co">#&gt; [2,] -0.05848185  1.00000000  0.05215722</span>
+<span class="co">#&gt; [3,] -0.01894989  0.05215722  1.00000000</span>
 <span class="kw"><a href="reference/wdm.html">wdm</a></span>(x, <span class="dt">method =</span> <span class="st">"spearman"</span>, <span class="dt">weights =</span> w)  <span class="co"># weighted</span>
-<span class="co">#&gt;            [,1]        [,2]        [,3]</span>
-<span class="co">#&gt; [1,] 1.00000000  0.02329495  0.16760635</span>
-<span class="co">#&gt; [2,] 0.02329495  1.00000000 -0.09620307</span>
-<span class="co">#&gt; [3,] 0.16760635 -0.09620307  1.00000000</span></code></pre></div>
+<span class="co">#&gt;             [,1]       [,2]       [,3]</span>
+<span class="co">#&gt; [1,]  1.00000000 -0.1287907 0.02260982</span>
+<span class="co">#&gt; [2,] -0.12879069  1.0000000 0.15002181</span>
+<span class="co">#&gt; [3,]  0.02260982  0.1500218 1.00000000</span></code></pre></div>
 </div>
 <div id="independence-test" class="section level5">
 <h5 class="hasAnchor">
@@ -150,11 +150,11 @@ w &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumenta
 y &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(<span class="dv">100</span>, <span class="dv">1</span>)  <span class="co"># all but Hoeffding's D can handle ties</span>
 w &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dv">100</span>)
 <span class="kw"><a href="reference/indep_test.html">indep_test</a></span>(x, y, <span class="dt">method =</span> <span class="st">"kendall"</span>)               <span class="co"># unweighted</span>
-<span class="co">#&gt;      estimate  statistic   p_value n_eff  method alternative</span>
-<span class="co">#&gt; 1 -0.02882177 -0.3443143 0.7306099   100 kendall   two-sided</span>
+<span class="co">#&gt;     estimate statistic   p_value n_eff  method alternative</span>
+<span class="co">#&gt; 1 -0.1327893 -1.550878 0.1209309   100 kendall   two-sided</span>
 <span class="kw"><a href="reference/indep_test.html">indep_test</a></span>(x, y, <span class="dt">method =</span> <span class="st">"kendall"</span>, <span class="dt">weights =</span> w)  <span class="co"># weighted</span>
-<span class="co">#&gt;      estimate  statistic   p_value    n_eff  method alternative</span>
-<span class="co">#&gt; 1 -0.09295083 -0.9893455 0.3224941 79.19031 kendall   two-sided</span></code></pre></div>
+<span class="co">#&gt;     estimate statistic    p_value   n_eff  method alternative</span>
+<span class="co">#&gt; 1 -0.1655902 -1.698569 0.08940033 75.1224 kendall   two-sided</span></code></pre></div>
 </div>
 </div>
 </div>

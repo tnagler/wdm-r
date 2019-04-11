@@ -15,7 +15,7 @@ LinkingTo:
     Rcpp
 Imports:
     Rcpp
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/tnagler/wdm-r
 BugReports: https://github.com/tnagler/wdm-r/issues
