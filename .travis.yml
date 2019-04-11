@@ -5,8 +5,7 @@ sudo: required
 cache: packages
 
 apt_packages:
-  - libgsl0-dev
-  - libgsl0ldbl
+  - libgsl-dev
   - libcurl4-openssl-dev
   - libxml2-dev
   - libcgal-dev
