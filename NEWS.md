@@ -1,3 +1,9 @@
+# wdm 0.2.2
+
+* fix computation of average weighted rank (no longer dependent on input order).
+  Primarily affects method "spearman".
+
+
 # wdm 0.2.1
 
 * keep debugging symbols after package install (following a request by Prof. Ripley).
