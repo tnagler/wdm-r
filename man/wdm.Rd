@@ -4,8 +4,7 @@
 \alias{wdm}
 \title{Weighted Dependence Measures}
 \usage{
-wdm(x, y = NULL, method = "pearson", weights = NULL,
-  remove_missing = TRUE)
+wdm(x, y = NULL, method = "pearson", weights = NULL, remove_missing = TRUE)
 }
 \arguments{
 \item{x}{a numeric vector, matrix or data frame.}

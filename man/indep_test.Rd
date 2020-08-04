@@ -4,8 +4,14 @@
 \alias{indep_test}
 \title{Independence Tests for Weighted Dependence Measures}
 \usage{
-indep_test(x, y, method = "pearson", weights = NULL,
-  remove_missing = TRUE, alternative = "two-sided")
+indep_test(
+  x,
+  y,
+  method = "pearson",
+  weights = NULL,
+  remove_missing = TRUE,
+  alternative = "two-sided"
+)
 }
 \arguments{
 \item{x, y}{numeric vectors of data values. \code{x} and \code{y} must have the same
