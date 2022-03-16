@@ -1,6 +1,6 @@
 # wdm 0.2.3
 
-* avoid bitwise operations on Boolean variables.
+* avoid bitwise operations on Boolean variables. 
  
  
 # wdm 0.2.2
