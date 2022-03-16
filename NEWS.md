@@ -1,3 +1,8 @@
+# wdm 0.2.3
+
+* avoid bitwise operations on Boolean variables.
+ 
+ 
 # wdm 0.2.2
 
 * fix computation of average weighted rank (no longer dependent on input order).

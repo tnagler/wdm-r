@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // wdm_cpp
 double wdm_cpp(const std::vector<double>& x, const std::vector<double>& y, std::string method, const std::vector<double>& weights, bool remove_missing);
 RcppExport SEXP _wdm_wdm_cpp(SEXP xSEXP, SEXP ySEXP, SEXP methodSEXP, SEXP weightsSEXP, SEXP remove_missingSEXP) {
