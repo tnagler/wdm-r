@@ -12,8 +12,7 @@ knitr::opts_chunk$set(
 ```
 # wdm
 
-[![Travis build status](https://travis-ci.org/tnagler/wdm-r.svg?branch=master)](https://travis-ci.org/tnagler/wdm-r)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/tnagler/wdm-r?branch=master&svg=true)](https://ci.appveyor.com/project/tnagler/wdm-r)
+[![R-CMD-check](https://github.com/tnagler/wdm-r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tnagler/wdm-r/actions/workflows/R-CMD-check.yaml)
 [![Coverage status](https://codecov.io/gh/tnagler/wdm-r/branch/master/graph/badge.svg)](https://codecov.io/github/tnagler/wdm-r?branch=master)
 [![CRAN status](https://www.r-pkg.org/badges/version/wdm)](https://cran.r-project.org/package=wdm)
 
