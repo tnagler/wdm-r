@@ -15,6 +15,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/tnagler/wdm-r/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tnagler/wdm-r/actions/workflows/R-CMD-check.yaml)
 [![Coverage status](https://codecov.io/gh/tnagler/wdm-r/branch/master/graph/badge.svg)](https://codecov.io/github/tnagler/wdm-r?branch=master)
 [![CRAN status](https://www.r-pkg.org/badges/version/wdm)](https://cran.r-project.org/package=wdm)
+![CRAN downloads](http://cranlogs.r-pkg.org/badges/wdm)
 
 R interface to the [wdm](https://github.com/tnagler/wdm) C++ library, which
 provides efficient implementations of weighted dependence measures and related 
