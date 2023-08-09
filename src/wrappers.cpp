@@ -67,7 +67,7 @@ Rcpp::List indep_test_cpp(const std::vector<double>& x,
 }
 
 // [[Rcpp::export]]
-std::vector<double> rank_wtd(
+std::vector<double> rank_wtd_cpp(
         std::vector<double> x,
         std::vector<double> weights = std::vector<double>(),
         std::string ties_method = "min")

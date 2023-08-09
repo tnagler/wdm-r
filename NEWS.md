@@ -1,6 +1,6 @@
 # wdm 0.2.4
 
-* more ties methods for weighted ranks (C++ interface).
+* add function `rank_wtd()` for computing weighted ranks.
  
  # wdm 0.2.3
 

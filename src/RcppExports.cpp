@@ -55,16 +55,16 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rank_wtd
-std::vector<double> rank_wtd(std::vector<double> x, std::vector<double> weights, std::string ties_method);
-RcppExport SEXP _wdm_rank_wtd(SEXP xSEXP, SEXP weightsSEXP, SEXP ties_methodSEXP) {
+// rank_wtd_cpp
+std::vector<double> rank_wtd_cpp(std::vector<double> x, std::vector<double> weights, std::string ties_method);
+RcppExport SEXP _wdm_rank_wtd_cpp(SEXP xSEXP, SEXP weightsSEXP, SEXP ties_methodSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::vector<double> >::type x(xSEXP);
     Rcpp::traits::input_parameter< std::vector<double> >::type weights(weightsSEXP);
     Rcpp::traits::input_parameter< std::string >::type ties_method(ties_methodSEXP);
-    rcpp_result_gen = Rcpp::wrap(rank_wtd(x, weights, ties_method));
+    rcpp_result_gen = Rcpp::wrap(rank_wtd_cpp(x, weights, ties_method));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -85,7 +85,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_wdm_wdm_cpp", (DL_FUNC) &_wdm_wdm_cpp, 5},
     {"_wdm_wdm_mat_cpp", (DL_FUNC) &_wdm_wdm_mat_cpp, 4},
     {"_wdm_indep_test_cpp", (DL_FUNC) &_wdm_indep_test_cpp, 6},
-    {"_wdm_rank_wtd", (DL_FUNC) &_wdm_rank_wtd, 3},
+    {"_wdm_rank_wtd_cpp", (DL_FUNC) &_wdm_rank_wtd_cpp, 3},
     {"_wdm_perm_sum_cpp", (DL_FUNC) &_wdm_perm_sum_cpp, 2},
     {NULL, NULL, 0}
 };
