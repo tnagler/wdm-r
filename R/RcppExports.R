@@ -13,3 +13,11 @@ indep_test_cpp <- function(x, y, method, weights, remove_missing, alternative) {
     .Call(`_wdm_indep_test_cpp`, x, y, method, weights, remove_missing, alternative)
 }
 
+rank_wtd <- function(x, weights, ties_method = "min") {
+    .Call(`_wdm_rank_wtd`, x, weights, ties_method)
+}
+
+perm_sum_cpp <- function(x, k) {
+    .Call(`_wdm_perm_sum_cpp`, x, k)
+}
+
