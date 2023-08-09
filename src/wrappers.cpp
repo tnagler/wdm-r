@@ -65,3 +65,18 @@ Rcpp::List indep_test_cpp(const std::vector<double>& x,
         Rcpp::Named("alternative") = alternative
     );
 }
+
+// [[Rcpp::export]]
+std::vector<double> rank_wtd(
+        std::vector<double> x,
+        std::vector<double> weights = std::vector<double>(),
+        std::string ties_method = "min")
+{
+    return wdm::impl::rank(x, weights, ties_method);
+}
+
+// [[Rcpp::export]]
+double perm_sum_cpp(const std::vector<double>& x, size_t k) {
+    return wdm::utils::perm_sum(x, k);
+}
+
