@@ -105,35 +105,35 @@ there are any.</p>
 <span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">)</span>  <span class="co"># all but Hoeffding's D can handle ties</span></span>
 <span class="r-in"><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">wdm</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"kendall"</span><span class="op">)</span>               <span class="co"># unweighted</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.07411836</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.02331856</span>
 <span class="r-in"><span class="fu">wdm</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"kendall"</span>, weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span>  <span class="co"># weighted</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.1646575</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.04052879</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">##  dependence in a matrix</span></span>
 <span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span>, <span class="fl">100</span>, <span class="fl">3</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">wdm</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span>               <span class="co"># unweighted</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]        [,2]        [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.0000000  0.10471047  0.01304530</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.1047105  1.00000000 -0.03271527</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.0130453 -0.03271527  1.00000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              [,1]         [,2]        [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.000000000  0.008676868 -0.04549655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.008676868  1.000000000 -0.03840384</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.045496550 -0.038403840  1.00000000</span>
 <span class="r-in"><span class="fu">wdm</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"spearman"</span>, weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span>  <span class="co"># weighted</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]        [,2]        [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.00000000  0.03371476  0.01045291</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.03371476  1.00000000 -0.08837455</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.01045291 -0.08837455  1.00000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 1.00000000  0.02177004  0.02048581</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.02177004  1.00000000 -0.01489218</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] 0.02048581 -0.01489218  1.00000000</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">##  dependence between columns of two matrices</span></span>
 <span class="r-in"><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="fl">2</span><span class="op">)</span>, <span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu">wdm</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"hoeffding"</span><span class="op">)</span>               <span class="co"># unweighted</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              [,1]        [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.001066883 0.001217214</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.005966540 0.000138177</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.004963253 0.003802662</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              [,1]          [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.002378469  0.0025429314</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.001035590  0.0005252796</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.005232169 -0.0035272380</span>
 <span class="r-in"><span class="fu">wdm</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"hoeffding"</span>, weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span>  <span class="co"># weighted</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              [,1]         [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.004794789 -0.003203395</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.008492578  0.004207494</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -0.004457043  0.017178348</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              [,1]          [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  0.007900614 -0.0001424806</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.006867154 -0.0039366282</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.007082112 -0.0032729170</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>

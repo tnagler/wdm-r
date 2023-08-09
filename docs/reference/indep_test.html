@@ -113,11 +113,11 @@ All methods except <code>"hoeffding"</code> work with discrete variables.</p>
 <span class="r-in"><span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu">indep_test</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"kendall"</span><span class="op">)</span>               <span class="co"># unweighted</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      estimate statistic   p_value n_eff  method alternative</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.09320531 -1.079505 0.2803628   100 kendall   two-sided</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     estimate statistic   p_value n_eff  method alternative</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.07376902 0.8223861 0.4108572   100 kendall   two-sided</span>
 <span class="r-in"><span class="fu">indep_test</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"kendall"</span>, weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span>  <span class="co"># weighted</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      estimate  statistic   p_value    n_eff  method alternative</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.08073365 -0.8172234 0.4138008 76.48434 kendall   two-sided</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     estimate statistic  p_value    n_eff  method alternative</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.08712423 0.7736649 0.439129 66.66832 kendall   two-sided</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
