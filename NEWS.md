@@ -1,4 +1,8 @@
-# wdm 0.2.3
+# wdm 0.2.4
+
+* more ties methods for weighted ranks (C++ interface).
+ 
+ # wdm 0.2.3
 
 * avoid bitwise operations on Boolean variables. 
  

@@ -23,6 +23,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -35,18 +37,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">wdm</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -56,8 +52,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/tnagler/wdm-r/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/tnagler/wdm-r/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -73,11 +69,11 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="wdm" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#wdm" class="anchor"></a>wdm</h1></div>
-
-<p>R interface to the <a href="https://github.com/tnagler/wdm">wdm</a> C++ library, which provides efficient implementations of weighted dependence measures and related independence tests:</p>
+<div class="section level1">
+<div class="page-header"><h1 id="wdm">wdm<a class="anchor" aria-label="anchor" href="#wdm"></a>
+</h1></div>
+<p><a href="https://github.com/tnagler/wdm-r/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/tnagler/wdm-r/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://codecov.io/github/tnagler/wdm-r?branch=master" class="external-link"><img src="https://codecov.io/gh/tnagler/wdm-r/branch/master/graph/badge.svg" alt="Coverage status"></a> <a href="https://cran.r-project.org/package=wdm" class="external-link"><img src="https://www.r-pkg.org/badges/version/wdm" alt="CRAN status"></a> <img src="http://cranlogs.r-pkg.org/badges/wdm" alt="CRAN downloads"></p>
+<p>R interface to the <a href="https://github.com/tnagler/wdm" class="external-link">wdm</a> C++ library, which provides efficient implementations of weighted dependence measures and related independence tests:</p>
 <ul>
 <li>Pearsons’s rho</li>
 <li>Spearmans’s rho</li>
@@ -86,73 +82,79 @@
 <li>Hoeffding’s D</li>
 </ul>
 <p>All measures are computed in <em>O(n</em> log <em>n)</em> time, where <em>n</em> is the number of observations.</p>
-<p>For a detailed description of the functionality, see the <a href="https://tnagler.github.io/wdm-r/">API documentation</a>.</p>
-<div id="installation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h3>
+<p>For a detailed description of the functionality, see the <a href="https://tnagler.github.io/wdm-r/" class="external-link">API documentation</a>.</p>
+<div class="section level3">
+<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h3>
 <ul>
 <li>the stable release from CRAN:</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"wdm"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"wdm"</span><span class="op">)</span></code></pre></div>
 <ul>
-<li>the development version from <a href="https://github.com/">GitHub</a> with:</li>
+<li>the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="no">install_submodule_git</span> <span class="kw">&lt;-</span> <span class="kw">function</span>(<span class="no">x</span>, <span class="no">...</span>) {
-  <span class="no">install_dir</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>()
-  <span class="fu"><a href="https://rdrr.io/r/base/system.html">system</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"git clone --recursive"</span>, <span class="fu"><a href="https://rdrr.io/r/base/shQuote.html">shQuote</a></span>(<span class="no">x</span>), <span class="fu"><a href="https://rdrr.io/r/base/shQuote.html">shQuote</a></span>(<span class="no">install_dir</span>)))
-  <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/install.html">install</a></span>(<span class="no">install_dir</span>, <span class="no">...</span>)
-}
-<span class="fu">install_submodule_git</span>(<span class="st">"https://github.com/tnagler/wdm-r"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="va">install_submodule_git</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">install_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/system.html" class="external-link">system</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"git clone --recursive"</span>, <span class="fu"><a href="https://rdrr.io/r/base/shQuote.html" class="external-link">shQuote</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/shQuote.html" class="external-link">shQuote</a></span><span class="op">(</span><span class="va">install_dir</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="va">install_dir</span>, <span class="va">...</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu">install_submodule_git</span><span class="op">(</span><span class="st">"https://github.com/tnagler/wdm-r"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="cloning" class="section level3">
-<h3 class="hasAnchor">
-<a href="#cloning" class="anchor"></a>Cloning</h3>
-<p>This repo contains <a href="https://github.com/tnagler/wdm">wdm</a> as a submodule. For a full clone use</p>
+<div class="section level3">
+<h3 id="cloning">Cloning<a class="anchor" aria-label="anchor" href="#cloning"></a>
+</h3>
+<p>This repo contains <a href="https://github.com/tnagler/wdm" class="external-link">wdm</a> as a submodule. For a full clone use</p>
 <pre class="shell"><code>git clone --recurse-submodules &lt;repo-address&gt;</code></pre>
 </div>
-<div id="examples" class="section level3">
-<h3 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h3>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">wdm</span>)</pre></div>
-<div id="dependence-between-two-vectors" class="section level5">
-<h5 class="hasAnchor">
-<a href="#dependence-between-two-vectors" class="anchor"></a>Dependence between two vectors</h5>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span>)
-<span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">rpois</a></span>(<span class="fl">100</span>, <span class="fl">1</span>)  <span class="co"># all but Hoeffding's D can handle ties</span>
-<span class="no">w</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">100</span>)
-<span class="fu"><a href="reference/wdm.html">wdm</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"kendall"</span>)               <span class="co"># unweighted</span>
-<span class="co">#&gt; [1] -0.002378163</span>
-<span class="fu"><a href="reference/wdm.html">wdm</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"kendall"</span>, <span class="kw">weights</span> <span class="kw">=</span> <span class="no">w</span>)  <span class="co"># weighted</span>
-<span class="co">#&gt; [1] 0.08897884</span></pre></div>
+<div class="section level3">
+<h3 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/tnagler/wdm-r" class="external-link">wdm</a></span><span class="op">)</span></code></pre></div>
+<div class="section level5">
+<h5 id="dependence-between-two-vectors">Dependence between two vectors<a class="anchor" aria-label="anchor" href="#dependence-between-two-vectors"></a>
+</h5>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">)</span>  <span class="co"># all but Hoeffding's D can handle ties</span>
+<span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+<span class="fu"><a href="reference/wdm.html">wdm</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"kendall"</span><span class="op">)</span>               <span class="co"># unweighted</span>
+<span class="co">#&gt; [1] -0.1206219</span>
+<span class="fu"><a href="reference/wdm.html">wdm</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"kendall"</span>, weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span>  <span class="co"># weighted</span>
+<span class="co">#&gt; [1] -0.01751542</span></code></pre></div>
 </div>
-<div id="dependence-in-a-matrix" class="section level5">
-<h5 class="hasAnchor">
-<a href="#dependence-in-a-matrix" class="anchor"></a>Dependence in a matrix</h5>
-<div class="sourceCode" id="cb6"><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span>(<span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span> * <span class="fl">3</span>), <span class="fl">100</span>, <span class="fl">3</span>)
-<span class="fu"><a href="reference/wdm.html">wdm</a></span>(<span class="no">x</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"spearman"</span>)               <span class="co"># unweighted</span>
-<span class="co">#&gt;            [,1]        [,2]        [,3]</span>
-<span class="co">#&gt; [1,]  1.0000000 -0.23383138 -0.05200120</span>
-<span class="co">#&gt; [2,] -0.2338314  1.00000000 -0.03560756</span>
-<span class="co">#&gt; [3,] -0.0520012 -0.03560756  1.00000000</span>
-<span class="fu"><a href="reference/wdm.html">wdm</a></span>(<span class="no">x</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"spearman"</span>, <span class="kw">weights</span> <span class="kw">=</span> <span class="no">w</span>)  <span class="co"># weighted</span>
-<span class="co">#&gt;            [,1]        [,2]        [,3]</span>
-<span class="co">#&gt; [1,]  1.0000000 -0.13603502 -0.12951931</span>
-<span class="co">#&gt; [2,] -0.1360350  1.00000000 -0.07473239</span>
-<span class="co">#&gt; [3,] -0.1295193 -0.07473239  1.00000000</span></pre></div>
+<div class="section level5">
+<h5 id="dependence-in-a-matrix">Dependence in a matrix<a class="anchor" aria-label="anchor" href="#dependence-in-a-matrix"></a>
+</h5>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span> <span class="op">*</span> <span class="fl">3</span><span class="op">)</span>, <span class="fl">100</span>, <span class="fl">3</span><span class="op">)</span>
+<span class="fu"><a href="reference/wdm.html">wdm</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span>               <span class="co"># unweighted</span>
+<span class="co">#&gt;            [,1]       [,2]       [,3]</span>
+<span class="co">#&gt; [1,]  1.0000000 -0.1842904 -0.0060006</span>
+<span class="co">#&gt; [2,] -0.1842904  1.0000000  0.1281728</span>
+<span class="co">#&gt; [3,] -0.0060006  0.1281728  1.0000000</span>
+<span class="fu"><a href="reference/wdm.html">wdm</a></span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"spearman"</span>, weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span>  <span class="co"># weighted</span>
+<span class="co">#&gt;             [,1]       [,2]       [,3]</span>
+<span class="co">#&gt; [1,]  1.00000000 -0.1435049 0.03738866</span>
+<span class="co">#&gt; [2,] -0.14350490  1.0000000 0.23603074</span>
+<span class="co">#&gt; [3,]  0.03738866  0.2360307 1.00000000</span></code></pre></div>
 </div>
-<div id="independence-test" class="section level5">
-<h5 class="hasAnchor">
-<a href="#independence-test" class="anchor"></a>Independence test</h5>
-<div class="sourceCode" id="cb7"><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>(<span class="fl">100</span>)
-<span class="no">y</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">rpois</a></span>(<span class="fl">100</span>, <span class="fl">1</span>)  <span class="co"># all but Hoeffding's D can handle ties</span>
-<span class="no">w</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span>(<span class="fl">100</span>)
-<span class="fu"><a href="reference/indep_test.html">indep_test</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"kendall"</span>)               <span class="co"># unweighted</span>
-<span class="co">#&gt;      estimate  statistic   p_value n_eff  method alternative</span>
-<span class="co">#&gt; 1 -0.05555546 -0.6291182 0.5292717   100 kendall   two-sided</span>
-<span class="fu"><a href="reference/indep_test.html">indep_test</a></span>(<span class="no">x</span>, <span class="no">y</span>, <span class="kw">method</span> <span class="kw">=</span> <span class="st">"kendall"</span>, <span class="kw">weights</span> <span class="kw">=</span> <span class="no">w</span>)  <span class="co"># weighted</span>
-<span class="co">#&gt;      estimate  statistic   p_value   n_eff  method alternative</span>
-<span class="co">#&gt; 1 -0.09298105 -0.9139628 0.3607364 75.5839 kendall   two-sided</span></pre></div>
+<div class="section level5">
+<h5 id="independence-test">Independence test<a class="anchor" aria-label="anchor" href="#independence-test"></a>
+</h5>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">1</span><span class="op">)</span>  <span class="co"># all but Hoeffding's D can handle ties</span>
+<span class="va">w</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>
+<span class="fu"><a href="reference/indep_test.html">indep_test</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"kendall"</span><span class="op">)</span>               <span class="co"># unweighted</span>
+<span class="co">#&gt;     estimate statistic   p_value n_eff  method alternative</span>
+<span class="co">#&gt; 1 0.05391935 0.6092239 0.5423761   100 kendall   two-sided</span>
+<span class="fu"><a href="reference/indep_test.html">indep_test</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"kendall"</span>, weights <span class="op">=</span> <span class="va">w</span><span class="op">)</span>  <span class="co"># weighted</span>
+<span class="co">#&gt;     estimate statistic   p_value    n_eff  method alternative</span>
+<span class="co">#&gt; 1 0.01193407  0.115073 0.9083872 75.82538 kendall   two-sided</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -160,49 +162,51 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=wdm">https://​cloud.r-project.org/​package=wdm</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/tnagler/wdm-r/">https://​github.com/​tnagler/​wdm-r/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/tnagler/wdm-r/issues">https://​github.com/​tnagler/​wdm-r/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=wdm" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/tnagler/wdm-r/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/tnagler/wdm-r/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing wdm</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Thomas Nagler <br><small class="roles"> Author, maintainer </small>  </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://travis-ci.org/tnagler/wdm-r"><img src="https://travis-ci.org/tnagler/wdm-r.svg?branch=master" alt="Travis build status"></a></li>
-<li><a href="https://ci.appveyor.com/project/tnagler/wdm-r"><img src="https://ci.appveyor.com/api/projects/status/github/tnagler/wdm-r?branch=master&amp;svg=true" alt="AppVeyor build status"></a></li>
-<li><a href="https://codecov.io/github/tnagler/wdm-r?branch=master"><img src="https://codecov.io/gh/tnagler/wdm-r/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
-<li><a href="https://cran.r-project.org/package=wdm"><img src="https://www.r-pkg.org/badges/version/wdm" alt="CRAN status"></a></li>
-</ul>
-</div>
-</div>
+
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Thomas Nagler.</p>
+  <p></p>
+<p>Developed by Thomas Nagler.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -210,6 +214,8 @@
 
   
 
+
+  
 
   </body>
 </html>
