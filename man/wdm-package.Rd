@@ -11,3 +11,15 @@
 The DESCRIPTION file:
 \packageDESCRIPTION{VineCopula}
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/tnagler/wdm-r}
+  \item Report bugs at \url{https://github.com/tnagler/wdm-r/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Thomas Nagler \email{mail@tnagler.com}
+
+}

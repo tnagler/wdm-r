@@ -12,5 +12,5 @@
 #' @docType package
 #' @useDynLib wdm, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
-NULL
+"_PACKAGE"
 

@@ -69,7 +69,7 @@ Rcpp::List indep_test_cpp(const std::vector<double>& x,
 // [[Rcpp::export]]
 std::vector<double> rank_wtd_cpp(
         std::vector<double> x,
-        std::vector<double> weights = std::vector<double>(),
+        std::vector<double> weights,
         std::string ties_method = "min")
 {
     return wdm::impl::rank(x, weights, ties_method);
