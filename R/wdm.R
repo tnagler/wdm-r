@@ -1,8 +1,8 @@
 #' Weighted Dependence Measures
 #'
 #' Computes a (possibly weighted) dependence measure between `x` and `y` if
-#' these are vectors. If `x` and `y` are matrices then the measure between the
-#' columns of `x` and the columns of `y` are computed.
+#' these are vectors. If either argument is a matrix, the measures between all
+#' corresponding columns are computed.
 #'
 #' @param x a numeric vector, matrix or data frame.
 #' @param y `NULL` (default) or a vector, matrix or data frame with compatible
@@ -70,14 +70,17 @@ wdm <- function(x, y = NULL, method = "pearson", weights = NULL,
     if (is.null(y)) {
         out <- wdm_mat_cpp(x, method, weights, remove_missing, seeds)
         colnames(out) <- rownames(out) <- colnames(x)
-    } else if (NCOL(x) == 1) {
+    } else if (NCOL(x) == 1 && NCOL(y) == 1) {
         out <- wdm_cpp(x, y, method, weights, remove_missing, seeds)
     } else {
-        out <- matrix(NA, ncol(x), ncol(y))
-        for (i in seq_len(ncol(x))) {
-            for (j in seq_len(ncol(y))) {
-                out[i, j] <- wdm(x[, i], y[, j], method, weights,
-                                 remove_missing, seeds)
+        out <- matrix(NA, NCOL(x), NCOL(y))
+        for (i in seq_len(NCOL(x))) {
+            for (j in seq_len(NCOL(y))) {
+                out[i, j] <- wdm(
+                    if (is.matrix(x)) x[, i] else x,
+                    if (is.matrix(y)) y[, j] else y,
+                    method, weights, remove_missing, seeds
+                )
             }
         }
         rownames(out) <- colnames(x)

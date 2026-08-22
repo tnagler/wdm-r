@@ -33,8 +33,8 @@ Chatterjee's xi. The default uses a fixed, reproducible ordering.}
 }
 \description{
 Computes a (possibly weighted) dependence measure between \code{x} and \code{y} if
-these are vectors. If \code{x} and \code{y} are matrices then the measure between the
-columns of \code{x} and the columns of \code{y} are computed.
+these are vectors. If either argument is a matrix, the measures between all
+corresponding columns are computed.
 }
 \details{
 Available methods:

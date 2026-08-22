@@ -27,22 +27,18 @@ Rcpp::NumericMatrix wdm_mat_cpp(const Rcpp::NumericMatrix& x,
 {
     using namespace Rcpp;
     int d = x.ncol();
-    if (d == 1)
-        throw std::runtime_error("x must have at least 2 columns.");
 
     NumericMatrix ms(d, d);
     for (int i = 0; i < x.cols(); i++) {
         for (int j = i; j < x.cols(); j++) {
-            if (j == i) {
-                ms(j, i) = 1.0;
-                continue;
-            }
             ms(i, j) = wdm::wdm(convert_vec(x(_, i)),
                                 convert_vec(x(_, j)),
                                 method,
                                 weights,
                                 remove_missing,
                                 seeds);
+            if (j == i)
+                continue;
             if (method == "chatterjee") {
                 ms(j, i) = wdm::wdm(convert_vec(x(_, j)),
                                     convert_vec(x(_, i)),
