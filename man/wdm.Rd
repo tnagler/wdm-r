@@ -50,6 +50,8 @@ Partial matching of method names is enabled.
 
 Spearman's \eqn{\rho} and Kendall's \eqn{\tau} are corrected for ties if
 there are any.
+This implementation of Hoeffding's \eqn{D} does not support tied
+observations; estimates are invalid when ties are present.
 Chatterjee's \eqn{\xi} measures the dependence of \code{y} on \code{x} and is
 generally asymmetric. Consequently, \code{wdm(x, method = "chatterjee")} need
 not return a symmetric matrix.

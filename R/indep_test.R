@@ -30,8 +30,10 @@
 #' - `"chatterjee"`: Chatterjee's \eqn{\xi}
 #'
 #' Partial matching of method names is enabled.
-#' Hoeffding's \eqn{D} supports only the two-sided alternative. The natural
-#' one-sided alternative for Chatterjee's \eqn{\xi} is `"greater"`.
+#' This implementation of Hoeffding's \eqn{D} does not support tied
+#' observations; test results are invalid when ties are present. It supports
+#' only the two-sided alternative. The natural one-sided alternative for
+#' Chatterjee's \eqn{\xi} is `"greater"`.
 #'
 #' Chatterjee's \eqn{\xi} measures the dependence of `y` on `x`. Analytic
 #' inference with unequal weights requires a continuous response and assumes

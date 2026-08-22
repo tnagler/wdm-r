@@ -4,7 +4,7 @@
 * add weighted Chatterjee's xi and its asymptotic independence test.
 * make predictor-tie handling for Chatterjee's xi reproducible by default and
   expose explicit seeds for alternative tie orderings.
-* fix edge-case calculations for Hoeffding's D, including tied observations.
+* document that Hoeffding's D does not support tied observations.
 
 # wdm 0.2.4
 
