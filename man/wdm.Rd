@@ -4,27 +4,42 @@
 \alias{wdm}
 \title{Weighted Dependence Measures}
 \usage{
-wdm(x, y = NULL, method = "pearson", weights = NULL, remove_missing = TRUE)
+wdm(
+  x,
+  y = NULL,
+  method = "pearson",
+  weights = NULL,
+  remove_missing = TRUE,
+  seeds = NULL
+)
 }
 \arguments{
 \item{x}{a numeric vector, matrix or data frame.}
 
 \item{y}{\code{NULL} (default) or a vector, matrix or data frame with compatible
-dimensions to x. The default is equivalent to `y = x`` (but more
+dimensions to \code{x}. The default is equivalent to \code{y = x} (but more
 efficient).}
 
 \item{method}{the dependence measure; see \emph{Details} for possible values.}
 
 \item{weights}{an optional vector of weights for the observations.}
 
-\item{remove_missing}{if \code{TRUE}, all (pairswise) incomplete observations are
+\item{remove_missing}{if \code{TRUE}, all pairwise incomplete observations are
 removed; if \code{FALSE}, the function throws an error if there are incomplete
 observations.}
+
+\item{seeds}{an optional integer vector used to break predictor ties for
+Chatterjee's xi. The default uses a fixed, reproducible ordering.}
+}
+\value{
+A numeric scalar when both inputs are vectors or one-column objects;
+otherwise, a matrix containing the dependence measure for every pair of
+columns.
 }
 \description{
 Computes a (possibly weighted) dependence measure between \code{x} and \code{y} if
-these are vectors. If \code{x} and \code{y} are matrices then the measure between the
-columns of \code{x} and the columns of \code{y} are computed.
+these are vectors. If either argument is a matrix, the measures between all
+corresponding columns are computed.
 }
 \details{
 Available methods:
@@ -34,16 +49,22 @@ Available methods:
 \item \code{"kendall"}: Kendall's \eqn{\tau}
 \item \code{"blomqvist"}: Blomqvist's \eqn{\beta}
 \item \code{"hoeffding"}: Hoeffding's \eqn{D}
+\item \code{"chatterjee"}: Chatterjee's \eqn{\xi}
 Partial matching of method names is enabled.
 }
 
 Spearman's \eqn{\rho} and Kendall's \eqn{\tau} are corrected for ties if
 there are any.
+This implementation of Hoeffding's \eqn{D} does not support tied
+observations; estimates are invalid when ties are present.
+Chatterjee's \eqn{\xi} measures the dependence of \code{y} on \code{x} and is
+generally asymmetric. Consequently, \code{wdm(x, method = "chatterjee")} need
+not return a symmetric matrix.
 }
 \examples{
 ##  dependence between two vectors
 x <- rnorm(100)
-y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
+y <- rpois(100, 1)
 w <- runif(100)
 wdm(x, y, method = "kendall")               # unweighted
 wdm(x, y, method = "kendall", weights = w)  # weighted

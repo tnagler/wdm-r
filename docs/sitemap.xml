@@ -1,36 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/indep_test.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/rank_wtd.html</loc>
-  </url>
-  <url>
-    <loc>/reference/wdm-package.html</loc>
-  </url>
-  <url>
-    <loc>/reference/wdm.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://tnagler.github.io/wdm-r/404.html</loc></url>
+<url><loc>https://tnagler.github.io/wdm-r/LICENSE-text.html</loc></url>
+<url><loc>https://tnagler.github.io/wdm-r/LICENSE.html</loc></url>
+<url><loc>https://tnagler.github.io/wdm-r/authors.html</loc></url>
+<url><loc>https://tnagler.github.io/wdm-r/index.html</loc></url>
+<url><loc>https://tnagler.github.io/wdm-r/news/index.html</loc></url>
+<url><loc>https://tnagler.github.io/wdm-r/reference/indep_test.html</loc></url>
+<url><loc>https://tnagler.github.io/wdm-r/reference/index.html</loc></url>
+<url><loc>https://tnagler.github.io/wdm-r/reference/rank_wtd.html</loc></url>
+<url><loc>https://tnagler.github.io/wdm-r/reference/wdm-package.html</loc></url>
+<url><loc>https://tnagler.github.io/wdm-r/reference/wdm.html</loc></url>
 </urlset>

@@ -1,5 +1,3 @@
-context("weighted ranks")
-
 test_that("weight 1 corresponds to unweighted", {
     x <- rnorm(50)
 
@@ -9,11 +7,11 @@ test_that("weight 1 corresponds to unweighted", {
 
     expect_equal(
         wdm:::rank_wtd(x, w, "average"),
-        rank(x, ties = "average"),
+        rank(x, ties = "average")
     )
 
     expect_equal(
         wdm:::rank_wtd(x, w, "min"),
-        rank(x, ties = "min"),
+        rank(x, ties = "min")
     )
 })

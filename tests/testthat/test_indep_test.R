@@ -1,5 +1,3 @@
-context("independence test")
-
 
 x <- sample.int(20)
 y <- sample.int(20)

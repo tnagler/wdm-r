@@ -9,18 +9,23 @@ rank_wtd(x, weights = numeric(), ties_method = "average")
 \arguments{
 \item{x}{a numeric vector.}
 
-\item{weights}{a vector of weights (same length as \code{x}).}
+\item{weights}{an optional vector of nonnegative weights with the same
+length as \code{x}.}
 
-\item{ties_method}{Indicates how to treat ties; same as in R, see
-https://stat.ethz.ch/R-manual/R-devel/library/base/html/rank.html.}
+\item{ties_method}{how to treat ties; one of \code{"average"}, \code{"min"},
+\code{"first"}, or \code{"random"}, as in \code{\link[=rank]{rank()}}.}
 }
 \value{
 a vector of ranks.
 }
 \description{
-The weighted rank of \eqn{X_i} among \eqn{X_1, \dots, X_n} with weights
-\eqn{w_1, \dots, w_n} is defined as
-\deqn{\frac 1 n \sum_{j = 1}^n w_i 1[X_j \le X_i].}
+For observations without ties, the weighted rank of \eqn{X_i} among
+\eqn{X_1, \dots, X_n} with weights \eqn{w_1, \dots, w_n} is
+\deqn{\frac{n}{\sum_{k = 1}^n w_k}
+      \sum_{j = 1}^n w_j 1[X_j \le X_i].}
+Thus, multiplying every weight by the same positive constant does not change
+the ranks, and unit weights reproduce ordinary ranks. Tied values are
+handled according to \code{ties_method}.
 }
 \examples{
 x <- rnorm(100)

@@ -3,13 +3,16 @@
 .git
 LICENSE.md
 ^README\.Rmd$
+^_pkgdown\.yml$
 appveyor\.yml
 .travis\.yml
 ^codecov\.yml$
 inst/example
 docs
 inst/README.md
+^inst/\.clang-format$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^revdep$
 .vscode
+^\.github$

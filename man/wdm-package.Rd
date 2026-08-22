@@ -7,13 +7,10 @@
 \description{
 \packageDescription{wdm}
 }
-\details{
-The DESCRIPTION file:
-\packageDESCRIPTION{VineCopula}
-}
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://tnagler.github.io/wdm-r/}
   \item \url{https://github.com/tnagler/wdm-r}
   \item Report bugs at \url{https://github.com/tnagler/wdm-r/issues}
 }
@@ -21,5 +18,10 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Thomas Nagler \email{mail@tnagler.com}
+
+Authors:
+\itemize{
+  \item Thomas Nagler \email{mail@tnagler.com}
+}
 
 }

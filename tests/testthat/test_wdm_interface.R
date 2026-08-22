@@ -1,5 +1,3 @@
-context("wdm interface")
-
 x <- matrix(sample.int(20), 10, 2)
 colnames(x) <- letters[1:2]
 

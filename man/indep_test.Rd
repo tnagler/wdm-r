@@ -10,7 +10,9 @@ indep_test(
   method = "pearson",
   weights = NULL,
   remove_missing = TRUE,
-  alternative = "two-sided"
+  alternative = "two-sided",
+  seeds = NULL,
+  y_continuous = TRUE
 )
 }
 \arguments{
@@ -21,7 +23,7 @@ length.}
 
 \item{weights}{an optional vector of weights for the observations.}
 
-\item{remove_missing}{if \code{TRUE}, all (pairswise) incomplete observations are
+\item{remove_missing}{if \code{TRUE}, all pairwise incomplete observations are
 removed; if \code{FALSE}, the function throws an error if there are incomplete
 observations.}
 
@@ -29,11 +31,21 @@ observations.}
 \code{"two-sided"}, \code{"greater"} or \code{"less"}. You can specify just the initial
 letter. \code{"greater"} corresponds to positive association, \code{"less"} to
 negative association.}
+
+\item{seeds}{an optional integer vector used to break predictor ties for
+Chatterjee's xi. The default uses a fixed, reproducible ordering.}
+
+\item{y_continuous}{whether the response distribution is known to be
+continuous for Chatterjee inference. Set this to \code{FALSE} for a discrete
+response even if the sample contains no observed response ties.}
+}
+\value{
+A one-row data frame containing the estimate, transformed test
+statistic, p-value, effective sample size, method, and alternative.
 }
 \description{
-Computes a (possibly weighted) dependence measure between \code{x} and \code{y} if
-these are vectors. If \code{x} and \code{y} are matrices then the measure between the
-columns of \code{x} and the columns of \code{y} are computed.
+Computes a dependence measure and its asymptotic independence test for two
+numeric vectors.
 }
 \details{
 Available methods:
@@ -43,14 +55,23 @@ Available methods:
 \item \code{"kendall"}: Kendall's \eqn{\tau}
 \item \code{"blomqvist"}: Blomqvist's \eqn{\beta}
 \item \code{"hoeffding"}: Hoeffding's \eqn{D}
+\item \code{"chatterjee"}: Chatterjee's \eqn{\xi}
 }
 
 Partial matching of method names is enabled.
-All methods except \code{"hoeffding"} work with discrete variables.
+This implementation of Hoeffding's \eqn{D} does not support tied
+observations; test results are invalid when ties are present. It supports
+only the two-sided alternative. The natural one-sided alternative for
+Chatterjee's \eqn{\xi} is \code{"greater"}.
+
+Chatterjee's \eqn{\xi} measures the dependence of \code{y} on \code{x}. Analytic
+inference with unequal weights requires a continuous response and assumes
+that weights are fixed or depend only on \code{x}. It is unavailable when the
+response is discrete or tied and weights are unequal.
 }
 \examples{
 x <- rnorm(100)
-y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
+y <- rpois(100, 1)
 w <- runif(100)
 
 indep_test(x, y, method = "kendall")               # unweighted
