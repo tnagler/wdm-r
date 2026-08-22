@@ -9,6 +9,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+set.seed(1)
 ```
 # wdm
 
@@ -17,19 +18,20 @@ knitr::opts_chunk$set(
 ![CRAN downloads](http://cranlogs.r-pkg.org/badges/wdm)
 
 R interface to the [wdm](https://github.com/tnagler/wdm) C++ library, which
-provides efficient implementations of weighted dependence measures and related 
+provides efficient implementations of weighted dependence measures and related
 independence tests:
 
-   * Pearsons's rho
-   * Spearmans's rho
+   * Pearson's rho
+   * Spearman's rho
    * Kendall's tau
    * Blomqvist's beta
    * Hoeffding's D
- 
-All measures are computed in *O(n* log *n)* time, where *n* is the number of 
-observations. 
+   * Chatterjee's xi
 
-For a detailed description of the functionality, see the 
+All measures are computed in *O(n* log *n)* time, where *n* is the number of
+observations.
+
+For a detailed description of the functionality, see the
 [API documentation](https://tnagler.github.io/wdm-r/).
 
 
@@ -55,7 +57,7 @@ install_submodule_git("https://github.com/tnagler/wdm-r")
 
 ### Cloning
 
-This repo contains [wdm](https://github.com/tnagler/wdm) as a submodule. For 
+This repo contains [wdm](https://github.com/tnagler/wdm) as a submodule. For
 a full clone use
 ``` shell
 git clone --recurse-submodules <repo-address>
@@ -70,7 +72,7 @@ library(wdm)
 #####  Dependence between two vectors
 ``` {r}
 x <- rnorm(100)
-y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
+y <- rpois(100, 1)
 w <- runif(100)
 wdm(x, y, method = "kendall")               # unweighted
 wdm(x, y, method = "kendall", weights = w)  # weighted
@@ -83,12 +85,19 @@ wdm(x, method = "spearman")               # unweighted
 wdm(x, method = "spearman", weights = w)  # weighted
 ```
 
+Chatterjee's xi measures the dependence of the second argument on the first,
+so reversing the arguments can change the result:
+
+``` {r}
+wdm(x[, 1], x[, 2], method = "chatterjee")
+wdm(x[, 2], x[, 1], method = "chatterjee")
+```
+
 ##### Independence test
 ``` {r}
 x <- rnorm(100)
-y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
+y <- rpois(100, 1)
 w <- runif(100)
 indep_test(x, y, method = "kendall")               # unweighted
 indep_test(x, y, method = "kendall", weights = w)  # weighted
 ```
-

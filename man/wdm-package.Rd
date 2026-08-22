@@ -22,4 +22,9 @@ Useful links:
 \author{
 \strong{Maintainer}: Thomas Nagler \email{mail@tnagler.com}
 
+Authors:
+\itemize{
+  \item Thomas Nagler \email{mail@tnagler.com}
+}
+
 }

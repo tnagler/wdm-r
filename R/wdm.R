@@ -10,9 +10,11 @@
 #'   efficient).
 #' @param method the dependence measure; see *Details* for possible values.
 #' @param weights an optional vector of weights for the observations.
-#' @param remove_missing if `TRUE`, all (pairswise) incomplete observations are
+#' @param remove_missing if `TRUE`, all pairwise incomplete observations are
 #'   removed; if `FALSE`, the function throws an error if there are incomplete
 #'   observations.
+#' @param seeds an optional integer vector used to break predictor ties for
+#'   Chatterjee's xi. The default uses a fixed, reproducible ordering.
 #'
 #' @details Available methods:
 #' - `"pearson"`: Pearson correlation
@@ -20,10 +22,14 @@
 #' - `"kendall"`: Kendall's \eqn{\tau}
 #' - `"blomqvist"`: Blomqvist's \eqn{\beta}
 #' - `"hoeffding"`: Hoeffding's \eqn{D}
+#' - `"chatterjee"`: Chatterjee's \eqn{\xi}
 #' Partial matching of method names is enabled.
 #'
 #' Spearman's \eqn{\rho} and Kendall's \eqn{\tau} are corrected for ties if
 #' there are any.
+#' Chatterjee's \eqn{\xi} measures the dependence of `y` on `x` and is
+#' generally asymmetric. Consequently, `wdm(x, method = "chatterjee")` need
+#' not return a symmetric matrix.
 #'
 #' @export
 #'
@@ -46,7 +52,7 @@
 #' wdm(x, y, method = "hoeffding", weights = w)  # weighted
 #'
 wdm <- function(x, y = NULL, method = "pearson", weights = NULL,
-                remove_missing = TRUE) {
+                remove_missing = TRUE, seeds = NULL) {
     ## preprocessing of arguments
     if (is.null(weights))
         weights <- numeric(0)
@@ -56,18 +62,20 @@ wdm <- function(x, y = NULL, method = "pearson", weights = NULL,
         x <- as.matrix(x)
     check_wdm_inputs(x, y, weights, remove_missing)
     method <- match.arg(method, allowed_methods)
+    seeds <- normalize_seeds(seeds)
 
     ## computations
     if (is.null(y)) {
-        out <- wdm_mat_cpp(x, method, weights, remove_missing)
+        out <- wdm_mat_cpp(x, method, weights, remove_missing, seeds)
         colnames(out) <- rownames(out) <- colnames(x)
     } else if (NCOL(x) == 1) {
-        out <- wdm_cpp(x, y, method, weights, remove_missing)
+        out <- wdm_cpp(x, y, method, weights, remove_missing, seeds)
     } else {
         out <- matrix(NA, ncol(x), ncol(y))
         for (i in seq_len(ncol(x))) {
             for (j in seq_len(ncol(y))) {
-                out[i, j] <- wdm(x[, i], y[, j], method, weights, remove_missing)
+                out[i, j] <- wdm(x[, i], y[, j], method, weights,
+                                 remove_missing, seeds)
             }
         }
         rownames(out) <- colnames(x)
@@ -78,7 +86,18 @@ wdm <- function(x, y = NULL, method = "pearson", weights = NULL,
     out
 }
 
-allowed_methods <- c("pearson", "kendall", "spearman", "hoeffding", "blomqvist")
+allowed_methods <- c("pearson", "kendall", "spearman", "hoeffding",
+                     "blomqvist", "chatterjee")
+
+normalize_seeds <- function(seeds) {
+    if (is.null(seeds))
+        return(integer(0))
+    if (!is.numeric(seeds) || anyNA(seeds) || any(!is.finite(seeds)) ||
+        any(seeds != trunc(seeds)) ||
+        any(abs(seeds) > .Machine$integer.max))
+        stop("'seeds' must contain finite integers")
+    as.integer(seeds)
+}
 
 check_wdm_inputs <- function(x, y, weights, remove_missing) {
     if (!is.matrix(x) && is.null(y))

@@ -4,7 +4,14 @@
 \alias{wdm}
 \title{Weighted Dependence Measures}
 \usage{
-wdm(x, y = NULL, method = "pearson", weights = NULL, remove_missing = TRUE)
+wdm(
+  x,
+  y = NULL,
+  method = "pearson",
+  weights = NULL,
+  remove_missing = TRUE,
+  seeds = NULL
+)
 }
 \arguments{
 \item{x}{a numeric vector, matrix or data frame.}
@@ -17,9 +24,12 @@ efficient).}
 
 \item{weights}{an optional vector of weights for the observations.}
 
-\item{remove_missing}{if \code{TRUE}, all (pairswise) incomplete observations are
+\item{remove_missing}{if \code{TRUE}, all pairwise incomplete observations are
 removed; if \code{FALSE}, the function throws an error if there are incomplete
 observations.}
+
+\item{seeds}{an optional integer vector used to break predictor ties for
+Chatterjee's xi. The default uses a fixed, reproducible ordering.}
 }
 \description{
 Computes a (possibly weighted) dependence measure between \code{x} and \code{y} if
@@ -34,11 +44,15 @@ Available methods:
 \item \code{"kendall"}: Kendall's \eqn{\tau}
 \item \code{"blomqvist"}: Blomqvist's \eqn{\beta}
 \item \code{"hoeffding"}: Hoeffding's \eqn{D}
+\item \code{"chatterjee"}: Chatterjee's \eqn{\xi}
 Partial matching of method names is enabled.
 }
 
 Spearman's \eqn{\rho} and Kendall's \eqn{\tau} are corrected for ties if
 there are any.
+Chatterjee's \eqn{\xi} measures the dependence of \code{y} on \code{x} and is
+generally asymmetric. Consequently, \code{wdm(x, method = "chatterjee")} need
+not return a symmetric matrix.
 }
 \examples{
 ##  dependence between two vectors

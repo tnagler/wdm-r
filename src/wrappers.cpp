@@ -7,9 +7,10 @@ double wdm_cpp(const std::vector<double>& x,
                const std::vector<double>& y,
                std::string method,
                const std::vector<double>& weights,
-               bool remove_missing)
+               bool remove_missing,
+               const std::vector<int>& seeds)
 {
-    return wdm::wdm(x, y, method, weights, remove_missing);
+    return wdm::wdm(x, y, method, weights, remove_missing, seeds);
 }
 
 std::vector<double> convert_vec(const Rcpp::NumericVector& x)
@@ -21,16 +22,17 @@ std::vector<double> convert_vec(const Rcpp::NumericVector& x)
 Rcpp::NumericMatrix wdm_mat_cpp(const Rcpp::NumericMatrix& x,
                                 std::string method,
                                 const std::vector<double>& weights,
-                                bool remove_missing)
+                                bool remove_missing,
+                                const std::vector<int>& seeds)
 {
     using namespace Rcpp;
-    size_t d = x.ncol();
+    int d = x.ncol();
     if (d == 1)
         throw std::runtime_error("x must have at least 2 columns.");
 
     NumericMatrix ms(d, d);
-    for (size_t i = 0; i < x.cols(); i++) {
-        for (size_t j = i; j < x.cols(); j++) {
+    for (int i = 0; i < x.cols(); i++) {
+        for (int j = i; j < x.cols(); j++) {
             if (j == i) {
                 ms(j, i) = 1.0;
                 continue;
@@ -39,8 +41,18 @@ Rcpp::NumericMatrix wdm_mat_cpp(const Rcpp::NumericMatrix& x,
                                 convert_vec(x(_, j)),
                                 method,
                                 weights,
-                                remove_missing);
-            ms(j, i) = ms(i, j);
+                                remove_missing,
+                                seeds);
+            if (method == "chatterjee") {
+                ms(j, i) = wdm::wdm(convert_vec(x(_, j)),
+                                    convert_vec(x(_, i)),
+                                    method,
+                                    weights,
+                                    remove_missing,
+                                    seeds);
+            } else {
+                ms(j, i) = ms(i, j);
+            }
         }
     }
 
@@ -53,9 +65,18 @@ Rcpp::List indep_test_cpp(const std::vector<double>& x,
                           std::string method,
                           const std::vector<double>& weights,
                           bool remove_missing,
-                          std::string alternative)
+                          std::string alternative,
+                          const std::vector<int>& seeds,
+                          bool y_continuous)
 {
-    wdm::Indep_test test(x, y, method, weights, remove_missing, alternative);
+    wdm::Indep_test test(x,
+                         y,
+                         method,
+                         weights,
+                         remove_missing,
+                         alternative,
+                         seeds,
+                         y_continuous);
     return Rcpp::List::create(
         Rcpp::Named("estimate") = test.estimate(),
         Rcpp::Named("statistic") = test.statistic(),
@@ -79,4 +100,3 @@ std::vector<double> rank_wtd_cpp(
 double perm_sum_cpp(const std::vector<double>& x, size_t k) {
     return wdm::utils::perm_sum(x, k);
 }
-

@@ -9,6 +9,7 @@ appveyor\.yml
 inst/example
 docs
 inst/README.md
+^inst/\.clang-format$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^revdep$

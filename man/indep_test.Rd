@@ -10,7 +10,9 @@ indep_test(
   method = "pearson",
   weights = NULL,
   remove_missing = TRUE,
-  alternative = "two-sided"
+  alternative = "two-sided",
+  seeds = NULL,
+  y_continuous = TRUE
 )
 }
 \arguments{
@@ -21,7 +23,7 @@ length.}
 
 \item{weights}{an optional vector of weights for the observations.}
 
-\item{remove_missing}{if \code{TRUE}, all (pairswise) incomplete observations are
+\item{remove_missing}{if \code{TRUE}, all pairwise incomplete observations are
 removed; if \code{FALSE}, the function throws an error if there are incomplete
 observations.}
 
@@ -29,6 +31,13 @@ observations.}
 \code{"two-sided"}, \code{"greater"} or \code{"less"}. You can specify just the initial
 letter. \code{"greater"} corresponds to positive association, \code{"less"} to
 negative association.}
+
+\item{seeds}{an optional integer vector used to break predictor ties for
+Chatterjee's xi. The default uses a fixed, reproducible ordering.}
+
+\item{y_continuous}{whether the response distribution is known to be
+continuous for Chatterjee inference. Set this to \code{FALSE} for a discrete
+response even if the sample contains no observed response ties.}
 }
 \description{
 Computes a (possibly weighted) dependence measure between \code{x} and \code{y} if
@@ -43,10 +52,17 @@ Available methods:
 \item \code{"kendall"}: Kendall's \eqn{\tau}
 \item \code{"blomqvist"}: Blomqvist's \eqn{\beta}
 \item \code{"hoeffding"}: Hoeffding's \eqn{D}
+\item \code{"chatterjee"}: Chatterjee's \eqn{\xi}
 }
 
 Partial matching of method names is enabled.
-All methods except \code{"hoeffding"} work with discrete variables.
+Hoeffding's \eqn{D} supports only the two-sided alternative. The natural
+one-sided alternative for Chatterjee's \eqn{\xi} is \code{"greater"}.
+
+Chatterjee's \eqn{\xi} measures the dependence of \code{y} on \code{x}. Analytic
+inference with unequal weights requires a continuous response and assumes
+that weights are fixed or depend only on \code{x}. It is unavailable when the
+response is discrete or tied and weights are unequal.
 }
 \examples{
 x <- rnorm(100)
