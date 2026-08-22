@@ -3,6 +3,7 @@
 .git
 LICENSE.md
 ^README\.Rmd$
+^_pkgdown\.yml$
 appveyor\.yml
 .travis\.yml
 ^codecov\.yml$

@@ -6,7 +6,7 @@
 #'
 #' @param x a numeric vector, matrix or data frame.
 #' @param y `NULL` (default) or a vector, matrix or data frame with compatible
-#'   dimensions to x. The default is equivalent to `y = x`` (but more
+#'   dimensions to `x`. The default is equivalent to `y = x` (but more
 #'   efficient).
 #' @param method the dependence measure; see *Details* for possible values.
 #' @param weights an optional vector of weights for the observations.
@@ -33,12 +33,16 @@
 #' generally asymmetric. Consequently, `wdm(x, method = "chatterjee")` need
 #' not return a symmetric matrix.
 #'
+#' @return A numeric scalar when both inputs are vectors or one-column objects;
+#'   otherwise, a matrix containing the dependence measure for every pair of
+#'   columns.
+#'
 #' @export
 #'
 #' @examples
 #' ##  dependence between two vectors
 #' x <- rnorm(100)
-#' y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
+#' y <- rpois(100, 1)
 #' w <- runif(100)
 #' wdm(x, y, method = "kendall")               # unweighted
 #' wdm(x, y, method = "kendall", weights = w)  # weighted

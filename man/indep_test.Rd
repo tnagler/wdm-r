@@ -39,10 +39,13 @@ Chatterjee's xi. The default uses a fixed, reproducible ordering.}
 continuous for Chatterjee inference. Set this to \code{FALSE} for a discrete
 response even if the sample contains no observed response ties.}
 }
+\value{
+A one-row data frame containing the estimate, transformed test
+statistic, p-value, effective sample size, method, and alternative.
+}
 \description{
-Computes a (possibly weighted) dependence measure between \code{x} and \code{y} if
-these are vectors. If \code{x} and \code{y} are matrices then the measure between the
-columns of \code{x} and the columns of \code{y} are computed.
+Computes a dependence measure and its asymptotic independence test for two
+numeric vectors.
 }
 \details{
 Available methods:
@@ -68,7 +71,7 @@ response is discrete or tied and weights are unequal.
 }
 \examples{
 x <- rnorm(100)
-y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
+y <- rpois(100, 1)
 w <- runif(100)
 
 indep_test(x, y, method = "kendall")               # unweighted

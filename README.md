@@ -96,11 +96,9 @@ so reversing the arguments can change the result:
 
 ``` r
 wdm(x[, 1], x[, 2], method = "chatterjee")
-#> Error in `match.arg()`:
-#> ! 'arg' should be one of "pearson", "kendall", "spearman", "hoeffding", "blomqvist"
+#> [1] 0.01740174
 wdm(x[, 2], x[, 1], method = "chatterjee")
-#> Error in `match.arg()`:
-#> ! 'arg' should be one of "pearson", "kendall", "spearman", "hoeffding", "blomqvist"
+#> [1] 0.03510351
 ```
 
 ##### Independence test
@@ -111,8 +109,18 @@ y <- rpois(100, 1)
 w <- runif(100)
 indep_test(x, y, method = "kendall")               # unweighted
 #>     estimate statistic   p_value n_eff  method alternative
-#> 1 0.02140979 0.2551596 0.7985998   100 kendall   two-sided
+#> 1 0.02140979 0.2799245 0.7795354   100 kendall   two-sided
 indep_test(x, y, method = "kendall", weights = w)  # weighted
 #>     estimate statistic   p_value   n_eff  method alternative
-#> 1 0.04616801 0.4453134 0.6560933 71.2503 kendall   two-sided
+#> 1 0.04616801 0.5015067 0.6160145 71.2503 kendall   two-sided
+```
+
+For Chatterjee's xi, `x` is the predictor and `y` is the response. Its natural
+one-sided alternative is `"greater"`:
+
+
+``` r
+indep_test(x, y, method = "chatterjee", alternative = "greater")
+#>      estimate statistic   p_value n_eff     method alternative
+#> 1 -0.04496517 -0.576012 0.7176965   100 chatterjee     greater
 ```

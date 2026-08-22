@@ -101,3 +101,10 @@ w <- runif(100)
 indep_test(x, y, method = "kendall")               # unweighted
 indep_test(x, y, method = "kendall", weights = w)  # weighted
 ```
+
+For Chatterjee's xi, `x` is the predictor and `y` is the response. Its natural
+one-sided alternative is `"greater"`:
+
+``` {r}
+indep_test(x, y, method = "chatterjee", alternative = "greater")
+```

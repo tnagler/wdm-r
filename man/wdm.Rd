@@ -17,7 +17,7 @@ wdm(
 \item{x}{a numeric vector, matrix or data frame.}
 
 \item{y}{\code{NULL} (default) or a vector, matrix or data frame with compatible
-dimensions to x. The default is equivalent to `y = x`` (but more
+dimensions to \code{x}. The default is equivalent to \code{y = x} (but more
 efficient).}
 
 \item{method}{the dependence measure; see \emph{Details} for possible values.}
@@ -30,6 +30,11 @@ observations.}
 
 \item{seeds}{an optional integer vector used to break predictor ties for
 Chatterjee's xi. The default uses a fixed, reproducible ordering.}
+}
+\value{
+A numeric scalar when both inputs are vectors or one-column objects;
+otherwise, a matrix containing the dependence measure for every pair of
+columns.
 }
 \description{
 Computes a (possibly weighted) dependence measure between \code{x} and \code{y} if
@@ -59,7 +64,7 @@ not return a symmetric matrix.
 \examples{
 ##  dependence between two vectors
 x <- rnorm(100)
-y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
+y <- rpois(100, 1)
 w <- runif(100)
 wdm(x, y, method = "kendall")               # unweighted
 wdm(x, y, method = "kendall", weights = w)  # weighted

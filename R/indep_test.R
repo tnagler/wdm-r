@@ -1,8 +1,7 @@
 #' Independence Tests for Weighted Dependence Measures
 #'
-#' Computes a (possibly weighted) dependence measure between `x` and `y` if
-#' these are vectors. If `x` and `y` are matrices then the measure between the
-#' columns of `x` and the columns of `y` are computed.
+#' Computes a dependence measure and its asymptotic independence test for two
+#' numeric vectors.
 #'
 #' @param x,y numeric vectors of data values. `x` and `y` must have the same
 #'   length.
@@ -40,11 +39,14 @@
 #' that weights are fixed or depend only on `x`. It is unavailable when the
 #' response is discrete or tied and weights are unequal.
 #'
+#' @return A one-row data frame containing the estimate, transformed test
+#'   statistic, p-value, effective sample size, method, and alternative.
+#'
 #' @export
 #'
 #' @examples
 #' x <- rnorm(100)
-#' y <- rpois(100, 1)  # all but Hoeffding's D can handle ties
+#' y <- rpois(100, 1)
 #' w <- runif(100)
 #'
 #' indep_test(x, y, method = "kendall")               # unweighted

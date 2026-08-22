@@ -18,7 +18,7 @@ LinkingTo:
 Imports:
     Rcpp
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/tnagler/wdm-r
+URL: https://tnagler.github.io/wdm-r/, https://github.com/tnagler/wdm-r
 BugReports: https://github.com/tnagler/wdm-r/issues
 Suggests: 
     testthat,

@@ -1,0 +1,6 @@
+url: https://tnagler.github.io/wdm-r/
+
+template:
+  bootstrap: 5
+
+llm-docs: false
