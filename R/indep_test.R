@@ -59,9 +59,7 @@ indep_test <- function(x, y, method = "pearson", weights = NULL,
     method <- match.arg(method, allowed_methods)
     alternative <- match.arg(alternative, allowed_alternatives)
     seeds <- normalize_seeds(seeds)
-    if (!is.logical(y_continuous) || length(y_continuous) != 1 ||
-        is.na(y_continuous))
-        stop("'y_continuous' must be TRUE or FALSE")
+    check_logical_scalar(y_continuous, "y_continuous")
 
     test <- indep_test_cpp(x, y, method, weights, remove_missing, alternative,
                            seeds, y_continuous)
@@ -73,15 +71,15 @@ allowed_methods <- c("pearson", "kendall", "spearman", "hoeffding",
 allowed_alternatives <- c("two-sided", "less", "greater")
 
 check_indep_test_inputs <- function(x, y, weights, remove_missing) {
-    if (!(is.numeric(x) | is.logical(x)) | (NCOL(x) != 1) )
+    if (!(is.numeric(x) || is.logical(x)) || !is.null(dim(x)))
         stop("'x' must be a numeric vector")
-    if (!(is.numeric(y) | is.logical(y)) | (NCOL(y) != 1) )
+    if (!(is.numeric(y) || is.logical(y)) || !is.null(dim(y)))
         stop("'y' must be a numeric vector")
-    if (!is.numeric(weights) | (NCOL(weights) != 1))
+    if (length(x) != length(y))
+        stop("'x' and 'y' must have the same length")
+    if (!is.numeric(weights) || !is.null(dim(weights)))
         stop("'weights' must be a numeric vector")
-    stopifnot(is.atomic(x))
-    stopifnot(is.atomic(y))
-    stopifnot(is.atomic(weights))
-    if (!is.logical(remove_missing))
-        stop("remove_missing must be logical.")
+    if (length(weights) > 0 && length(weights) != length(x))
+        stop("'weights' must have one value per observation")
+    check_logical_scalar(remove_missing, "remove_missing")
 }

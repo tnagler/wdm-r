@@ -19,6 +19,17 @@
 #' rank_wtd(x, w)
 rank_wtd <- function(x, weights = numeric(), ties_method = "average") {
     ## preprocessing of arguments
-    stopifnot(is.numeric(x))
+    if (!is.numeric(x) || !is.null(dim(x)))
+        stop("'x' must be a numeric vector")
+    if (!is.numeric(weights) || !is.null(dim(weights)))
+        stop("'weights' must be a numeric vector")
+    if (length(weights) > 0 && length(weights) != length(x))
+        stop("'weights' must have the same length as 'x'")
+    if (length(weights) > 0 &&
+        (any(!is.finite(weights)) || any(weights < 0) || sum(weights) <= 0))
+        stop("'weights' must be finite, nonnegative, and have a positive sum")
+    ties_method <- match.arg(
+        ties_method, c("average", "min", "first", "random")
+    )
     rank_wtd_cpp(x, weights, ties_method)
 }

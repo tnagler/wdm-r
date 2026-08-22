@@ -97,7 +97,8 @@ allowed_methods <- c("pearson", "kendall", "spearman", "hoeffding",
 normalize_seeds <- function(seeds) {
     if (is.null(seeds))
         return(integer(0))
-    if (!is.numeric(seeds) || anyNA(seeds) || any(!is.finite(seeds)) ||
+    if (!is.numeric(seeds) || !is.null(dim(seeds)) || anyNA(seeds) ||
+        any(!is.finite(seeds)) ||
         any(seeds != trunc(seeds)) ||
         any(abs(seeds) > .Machine$integer.max))
         stop("'seeds' must contain finite integers")
@@ -105,21 +106,28 @@ normalize_seeds <- function(seeds) {
 }
 
 check_wdm_inputs <- function(x, y, weights, remove_missing) {
-    if (!is.matrix(x) && is.null(y))
-        stop("supply both 'x' and 'y' or a matrix-like 'x'")
     if (!(is.numeric(x) || is.logical(x)))
         stop("'x' must be numeric")
-    if (!is.numeric(weights) | (NCOL(weights) != 1))
+    if (!is.null(dim(x)) && length(dim(x)) != 2)
+        stop("'x' must be a vector or matrix")
+    if (!is.matrix(x) && is.null(y))
+        stop("supply both 'x' and 'y' or a matrix-like 'x'")
+    if (!is.numeric(weights) || !is.null(dim(weights)))
         stop("'weights' must be a numeric vector")
-    stopifnot(is.atomic(x))
-    stopifnot(is.atomic(weights))
+    if (length(weights) > 0 && length(weights) != NROW(x))
+        stop("'weights' must have one value per observation")
     if (!is.null(y)) {
         if (!(is.numeric(y) || is.logical(y)))
             stop("'y' must be numeric")
-        stopifnot(is.atomic(y))
-        if ((NROW(x) != NROW(y)))
+        if (!is.null(dim(y)) && length(dim(y)) != 2)
+            stop("'y' must be a vector or matrix")
+        if (NROW(x) != NROW(y))
             stop("'x' and 'y' must have the same number of rows")
     }
-    if (!is.logical(remove_missing))
-        stop("remove_missing must be logical.")
+    check_logical_scalar(remove_missing, "remove_missing")
+}
+
+check_logical_scalar <- function(value, name) {
+    if (!is.logical(value) || length(value) != 1 || is.na(value))
+        stop(sprintf("'%s' must be TRUE or FALSE", name))
 }
