@@ -95,9 +95,6 @@ wdm <- function(x, y = NULL, method = "pearson", weights = NULL,
     out
 }
 
-allowed_methods <- c("pearson", "kendall", "spearman", "hoeffding",
-                     "blomqvist", "chatterjee")
-
 normalize_seeds <- function(seeds) {
     if (is.null(seeds))
         return(integer(0))

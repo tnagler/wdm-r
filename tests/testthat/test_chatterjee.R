@@ -1,5 +1,3 @@
-context("Chatterjee's xi")
-
 test_that("Chatterjee's xi is directional", {
     x <- seq_len(20)
     y <- (x - 10)^2

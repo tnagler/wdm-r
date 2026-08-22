@@ -68,10 +68,6 @@ indep_test <- function(x, y, method = "pearson", weights = NULL,
     as.data.frame(test)
 }
 
-allowed_methods <- c("pearson", "kendall", "spearman", "hoeffding",
-                     "blomqvist", "chatterjee")
-allowed_alternatives <- c("two-sided", "less", "greater")
-
 check_indep_test_inputs <- function(x, y, weights, remove_missing) {
     if (!(is.numeric(x) || is.logical(x)) || !is.null(dim(x)))
         stop("'x' must be a numeric vector")

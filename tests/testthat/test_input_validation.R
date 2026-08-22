@@ -1,5 +1,3 @@
-context("input validation")
-
 test_that("logical flags are scalar and non-missing", {
     expect_error(wdm(1:5, 1:5, remove_missing = NA), "TRUE or FALSE")
     expect_error(

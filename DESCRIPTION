@@ -21,8 +21,9 @@ Roxygen: list(markdown = TRUE)
 URL: https://tnagler.github.io/wdm-r/, https://github.com/tnagler/wdm-r
 BugReports: https://github.com/tnagler/wdm-r/issues
 Suggests: 
-    testthat,
+    testthat (>= 3.0.0),
     Hmisc,
     copula,
     covr
 Config/roxygen2/version: 8.0.0
+Config/testthat/edition: 3

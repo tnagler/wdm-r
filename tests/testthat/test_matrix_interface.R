@@ -1,5 +1,3 @@
-context("matrix interface")
-
 test_that("vectors and matrices can be combined", {
     x <- seq_len(10)
     y <- cbind(increasing = x, decreasing = rev(x))

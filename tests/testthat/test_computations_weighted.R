@@ -9,8 +9,6 @@ colnames(xt) <- letters[1:10]
 
 w <- c(rep(2, 10), rep(0, 10))
 
-context("weighted computations: wdm()")
-
 for (method in wdm:::allowed_methods) {
     test_that(paste("method", method, "is correct"), {
         expect_equal(
@@ -25,8 +23,6 @@ for (method in wdm:::allowed_methods) {
         )
     })
 }
-
-context("weighted computations: indep_test()")
 
 for (method in wdm:::allowed_methods) {
     test_that(paste("method", method, "is correct"), {
